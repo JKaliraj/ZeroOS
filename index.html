@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zero OS</title>
+  <link rel="shortcut icon" href="./assests/favicon.png" type="image/x-icon">
+  <link rel="stylesheet" href="./style/style.css">
+  <!-- http://demo.kodcloud.com/#desktop  https://nextapps-de.github.io/winbox/  https://fosiper.com/games/taptaptap/play/ -->
+</head>
+
+<body oncontextmenu="return false;">
+
+  <div id="splash">
+    <img src="./assests/favicon.png">
+    <h2>ZeroOS</h2>
+  </div>
+
+  <div class="loginMain" style="background: url(./assests/loginbg.jpg);background-size: cover;">
+    <div class="signin">
+      <img src="./assests/user.png" alt="">
+      <div class="signinRow">
+        <div class="inputField">
+          <input type="text" id="signinUser" placeholder="Username" maxlength="12" autocomplete="off">
+          <input type="password" id="signinPass" placeholder="Password" onkeydown="signinPassKeyPressed()">
+        </div>
+        <button class="signinButton" onclick="showPasswordInput()"><img src="./assests/arrow-left.svg" alt=""></button>
+      </div>
+      <p onclick="showSetupNewAccount()">Set up a new user account</p>
+    </div>
+    <div class="signup">
+      <img src="./assests/user.png" class="signupUserPic">
+      <input type="text" id="signupUser" placeholder="Username" maxlength="12" autocomplete="off">
+      <input type="password" id="signupPass" placeholder="Password">
+      <input type="password" id="signupCPass" placeholder="Confirm Password">
+      <button class="signupButton" onclick="createNewUser()">Create</button>
+      <p onclick="showExistingAccount()">Already an Zerosoft User</p>
+
+    </div>
+  </div>
+  <div class="alert danger-alert">
+    <p id="alert-text"></p>
+  </div>
+  <div class="container" style="display: none">
+    <div class="sidebarWindowsMenu">
+      <div class="item currentUserInfo"><img src="./assests/user.png" alt=""> Administrator</div>
+      <hr>
+      <div class="item"><img src="./assests/user.svg" alt="">Personalize</div>
+      <div class="item"><img src="./assests/globe.svg" alt="">Language</div>
+      <div class="item"><img src="./assests/sun.svg" alt="">Theme</div>
+      <div class="item aboutContextMenu"><img src="./assests/info.svg" alt="">About</div>
+      <div class="item logoutMenu"><img src="./assests/log-out.svg" alt="">Logout</div>
+    </div>
+    <div class="context-menu">
+      <div class="item"><img src="./assests/grid.svg" alt=""> View</div>
+      <div class="item" id="refresh"><img src="./assests/rotate-cw.svg" alt="">Refresh</div>
+      <div class="item" id="maximizeWindow"><img src="./assests/maximize.svg" alt="">Fullscreen</div>
+      <div class="item"><img src="./assests/upload.svg" alt="">Upload</div>
+      <div class="item"><img src="./assests/user.svg" alt="">Personalize</div>
+      <div class="item"><img src="./assests/settings.svg" alt="">Settings</div>
+    </div>
+
+    <div class="sidebar">
+      <div class="titlebox"> <span>Z</span>OS </div>
+      <div class="box active sidebarHome">
+        <div class="box__right"></div>
+        <div class="box__left"></div>
+        <div class="box__top"></div>
+        <div class="box__bottom"></div>
+        <div class="box__center">
+          <img src="./assests/desktop.png" alt="">
+          <p>Home</p>
+        </div>
+      </div>
+      <div class="box sidebarFile">
+        <div class="box__right"></div>
+        <div class="box__left"></div>
+        <div class="box__top"></div>
+        <div class="box__bottom"></div>
+        <div class="box__center">
+          <img src="./assests/folder.png" alt="">
+          <p>Files</p>
+        </div>
+      </div>
+      <div class="box sidebarPhotos">
+        <div class="box__right"></div>
+        <div class="box__left"></div>
+        <div class="box__top"></div>
+        <div class="box__bottom"></div>
+        <div class="box__center">
+          <img src="./assests/image.png" alt="">
+          <p>Photos</p>
+        </div>
+      </div>
+      <div class="box sidebarEditor">
+        <div class="box__right"></div>
+        <div class="box__left"></div>
+        <div class="box__top"></div>
+        <div class="box__bottom"></div>
+        <div class="box__center">
+          <img src="./assests/text.png" alt="">
+          <p>Editor</p>
+        </div>
+      </div>
+      <div class="box sidebarShare">
+        <div class="box__right"></div>
+        <div class="box__left"></div>
+        <div class="box__top"></div>
+        <div class="box__bottom"></div>
+        <div class="box__center">
+          <img src="./assests/share.svg" alt="">
+          <p>Share</p>
+        </div>
+      </div>
+
+
+      <div class="box sidebarWindows">
+        <div class="box__right"></div>
+        <div class="box__left"></div>
+        <div class="box__top"></div>
+        <div class="box__bottom"></div>
+        <div class="box__center">
+          <img src="./assests/windows.png" alt="">
+        </div>
+      </div>
+    </div>
+
+    <div class="main" id="main">
+
+      <div class="appsIcon">
+        <img src="./assests/desktop.png" alt="">
+        <p>My Computer</p>
+      </div>
+      <div class="appsIcon zeroStore" onclick="openStore()">
+        <img src="./assests/app-store.png" alt="">
+        <p>Store</p>
+      </div>
+      <div class="appsIcon">
+        <img src="./assests/icloud.png" alt="">
+        <p>Zero Cloud</p>
+      </div>
+
+
+
+
+
+
+
+
+    </div>
+    <div class="myClock">
+      <div class="clock">
+        <div class="hour">
+          <div class="hr" id="hr"></div>
+        </div>
+        <div class="min">
+          <div class="mn" id="mn"></div>
+        </div>
+        <div class="sec">
+          <div class="sc" id="sc"></div>
+        </div>
+
+      </div>
+      <div class="dateTime">
+        <div class="digital">00:00</div>
+        <div class="digitalDate">00-00-0000</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="backstore" style="display: none">
+    <div id="appStoreMain" oncontextmenu="return false;">
+      <div class="appStoreSideBar">
+        <div class="box appStoreApps">
+          <img src="./assests/apps.png" alt="">
+          <p>Apps</p>
+        </div>
+        <div class="box appStoreGames">
+          <img src="./assests/gamepad.png" alt="">
+          <p>Games</p>
+        </div>
+        <div class="box appStoreUser">
+          <img src="./assests/user.png" alt="">
+        </div>
+      </div>
+
+      <div class="appStoreMainBody">
+        <div class="section">
+          <p>Top Apps</p>
+          <div class="row">
+
+          </div>
+        </div>
+
+        <div class="appInstallWindow">
+          <div class="backBtn appInstallToMain"><img src="./assests/arrow-left.svg" alt=""></div>
+          <div class="appbox">
+            <div class="appHead">
+              <div class="appHeadLeft">
+                <img src="" alt="">
+              </div>
+              <div class="appHeadRight">
+                <p class="appTitle"></p>
+                <button class="appInstallButton" onclick="">Install</button>
+              </div>
+            </div>
+            <hr>
+            <div class="about">
+              <h3>About</h3>
+              <p class="appAbout"></p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div id="aboutMain">
+      <div class="aboutHead">
+        <h3>ZeroOS <span>Cloud</span></h3>
+      </div>
+      <div class="aboutBody">
+        <div class="aboutContent">
+          <p>Zero OS is a private cloud and online document management system, providing security,
+            controllability, and online office. Easy-to-use, highly customizable
+            private cloud products. It adopts windows-style interface and operating habits, and you can get started
+            quickly without adapting. It supports online preview, playback and editing of hundreds of commonly used file
+            formats.
+            It is environment-friendly and powerful.</p>
+        </div>
+        <span>Crafted with ❤️ by <a href="https://krdeveloper.web.app/" class="githubUser">KR</span></span>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Clock
+    const deg = 6; //360deg / 60(min||sec) => 6
+    const hr = document.querySelector("#hr");
+    const mn = document.querySelector("#mn");
+    const sc = document.querySelector("#sc");
+
+    setInterval(() => {
+      let day = new Date();
+      let hh = day.getHours() * 30; //360deg / 12 hour => 30
+      let mm = day.getMinutes() * deg;
+      let ss = day.getSeconds() * deg;
+
+      hr.style.transform = `rotateZ(${hh + mm / 12}deg)`;
+      mn.style.transform = `rotateZ(${mm}deg)`;
+      sc.style.transform = `rotateZ(${ss}deg)`;
+
+      var strTime = day.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
+      document.querySelector(".digital").innerText = strTime;
+      var strDate = ("0" + day.getDate()).slice(-2) + "-" + ("0" + (day.getMonth() + 1)).slice(-2) + "-" + day.getFullYear();
+      document.querySelector(".digitalDate").innerText = strDate;
+
+
+
+    });
+
+    dragElement(document.querySelector(".myClock"));
+
+    function dragElement(elmnt) {
+      var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+      /* otherwise, move the DIV from anywhere inside the DIV:*/
+      elmnt.onmousedown = dragMouseDown;
+      function dragMouseDown(e) {
+        e = e || window.event;
+        e.preventDefault();
+        // get the mouse cursor position at startup:
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        document.onmouseup = closeDragElement;
+        // call a function whenever the cursor moves:
+        document.onmousemove = elementDrag;
+      }
+
+      function elementDrag(e) {
+        e = e || window.event;
+        e.preventDefault();
+        // calculate the new cursor position:
+        pos1 = pos3 - e.clientX;
+        pos2 = pos4 - e.clientY;
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        // set the element's new position:
+        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+      }
+
+      function closeDragElement() {
+        /* stop moving when mouse button is released:*/
+        document.onmouseup = null;
+        document.onmousemove = null;
+      }
+    }
+
+
+// Clock End
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" async></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js" async></script>
+  <script src="https://rawcdn.githack.com/nextapps-de/winbox/0.2.6/dist/winbox.bundle.min.js"></script>
+  <script src=https://www.gstatic.com/firebasejs/8.4.2/firebase-app.js></script>
+  <script src=https://www.gstatic.com/firebasejs/8.4.2/firebase-database.js></script>
+  <script src="./js/fire.js"></script>
+  <script src="./js/md5.js"></script>
+  <script src="./js/script.js" defer></script>
+  <script src="./js/config.js"></script>
+</body>
+
+</html>
