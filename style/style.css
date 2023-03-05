@@ -1172,3 +1172,59 @@ body {
 }
 
 /* About End */
+
+/* Filemanager Start */
+/* filemanager */
+
+/* filemanager sidebar */
+
+.wrapper {
+    display: flex;
+  }
+  .indicator {
+    /* padding: 1.5rem 0; */
+    /* background: blue; */
+    height: 100%;
+  }
+  .indicator li {
+    display: flex;
+    align-items: center;
+    grid-gap: 0.5rem;
+    padding: 10px 2rem;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    color: black;
+    border-right: 2px solid transparent;
+  }
+  .indicator li img {
+    height: 18px;
+    width: 18px;
+  }
+  .indicator li:hover {
+    background: #ccc;
+  }
+  .indicator li.active {
+    border-right-color: black;
+    background: #ccc;
+  }
+  .content {
+    padding: 1.5rem 2rem;
+  }
+  .content li {
+    display: none;
+  }
+  .content li.active {
+    display: block;
+  }
+  .content li h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: black;
+    margin-bottom: 0.75rem;
+  }
+  .content li p {
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+  }
+/* Filemanager End */
