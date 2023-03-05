@@ -24,7 +24,7 @@
       <div class="signinRow">
         <div class="inputField">
           <input type="text" id="signinUser" placeholder="Username" maxlength="12" autocomplete="off">
-          <input type="password" id="signinPass" placeholder="Password" onkeydown="signinPassKeyPressed()">
+          <input type="password" id="signinPass" placeholder="Password" onkeyup="signinPassKeyPressed()">
         </div>
         <button class="signinButton" onclick="showPasswordInput()"><img src="./assests/arrow-left.svg" alt=""></button>
       </div>
@@ -172,22 +172,21 @@
 
   <div id="backstore" style="display: none">
     <div class="filemanager">
-        <div class="wrapper">
           <ul class="indicator">
             <li class="active" data-target="#desktop">
               <img src="../assests/desktop.png" alt="" />Desktop
             </li>
             <li data-target="#download">
-              <img src="../assests/download.png" alt="" />Download
+              <img src="../assests/download.png" alt="" />Downloads
             </li>
             <li data-target="#music">
               <img src="../assests/music.png" alt="" />Music
             </li>
             <li data-target="#picture">
-              <img src="../assests/picture.png" alt="" />Picture
+              <img src="../assests/picture.png" alt="" />Photos
             </li>
             <li data-target="#video">
-              <img src="../assests/video.png" alt="" />video
+              <img src="../assests/video.png" alt="" />Video
             </li>
           </ul>
           <ul class="content">
@@ -230,7 +229,6 @@
               </p>
             </li>
           </ul>
-        </div>
     </div>
 
     <div id="appStoreMain" oncontextmenu="return false;">
