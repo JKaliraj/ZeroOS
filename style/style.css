@@ -98,6 +98,7 @@ body {
     opacity: 0;
     background: url(../assests/loginbg.JPG);
     background-size: cover;
+    overflow: hidden;
 }
 
 .loginMain .signin {
@@ -1177,16 +1178,34 @@ body {
 /* filemanager */
 
 /* filemanager sidebar */
-
-.wrapper {
-    display: flex;
-  }
-  .indicator {
-    /* padding: 1.5rem 0; */
-    /* background: blue; */
+.filesTheme{
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+.filemanager{
+    width: 100%;
     height: 100%;
-  }
-  .indicator li {
+    display: flex;
+    overflow: hidden;
+}
+.filemanager .indicator{
+    background-color: #faf8f8da;
+    min-width: 18%;
+    height: 100%;
+    overflow: hidden;
+}
+.filemanager .indicator img{
+    width: 23px;
+    height: 23px;
+    object-fit: cover;
+}
+.filemanager .content{
+    width: 83%;
+    height: 100%;
+    overflow-y: scroll;
+}
+.indicator li {
     display: flex;
     align-items: center;
     grid-gap: 0.5rem;

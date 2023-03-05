@@ -128,15 +128,16 @@ function showuserInput() {
 function signinPassKeyPressed() {
   var usernameInputLen = signinRow.querySelector("#signinUser");
   var passwordInputLen = signinRow.querySelector("#signinPass");
-  if (passwordInputLen.value.length > 1) {
-    signinButton.classList.remove("activeSignin");
-    signinButton.setAttribute("onclick", "login()");
-  } else {
+
+  if (passwordInputLen.value.length == 0) {
     signinButton.classList.add("activeSignin");
-    passwordInput.focus();
-    signinButton.setAttribute("onclick", "showPasswordInput()");
+    signinButton.setAttribute("onclick", "showuserInput()");
     usernameInput.style = "position:absolute;z-index:-999;opacity:0";
     passwordInput.style = "position:relative;z-index:999;opacity:1";
+  } 
+  if (passwordInputLen.value.length > 0) {
+    signinButton.classList.remove("activeSignin");
+    signinButton.setAttribute("onclick", "login()");
   }
 }
 
@@ -461,6 +462,8 @@ sidebarFile.addEventListener("click", () => {
       y: "center",
       width: "80%",
       height: "80%",
+      minwidth:730,
+      minheight:520,
       class: "filesTheme",
       onclose: function () {
         sidebarFileActive = 0;
