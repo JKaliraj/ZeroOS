@@ -1,414 +1,404 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;800&display=swap");
 
 :root {
-    --light: #e8e8e8;
-    --dark: #212121;
-    --secondary: #1d9bf0;
+  --light: #e8e8e8;
+  --dark: #212121;
+  --secondary: #1d9bf0;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    -webkit-user-drag: none;
-    outline: none;
-    -webkit-tap-highlight-color: transparent;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-user-drag: none;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 *:focus {
-    outline: none;
+  outline: none;
 }
 
 body {
-    overflow: hidden;
-    /* color: var(--dark); */
-    /* background-color: var(--light); */
-    /* backdrop-filter: blur(2px); */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: all 500ms linear;
-    font-family: "Nunito" !important;
-    background-color: #1b1a1a;
-
+  overflow: hidden;
+  /* color: var(--dark); */
+  /* background-color: var(--light); */
+  /* backdrop-filter: blur(2px); */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 500ms linear;
+  font-family: "Nunito" !important;
+  background-color: #1b1a1a;
 }
 
 /* Signin Start */
 #splash {
-    width: 100vw;
-    height: 100vh;
-    /* display: none; */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    animation: closesplash 3s ease-out;
-    background-color: #1b1a1a;
-    gap: 20px;
-
+  width: 100vw;
+  height: 100vh;
+  /* display: none; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  animation: closesplash 3s ease-out;
+  background-color: #1b1a1a;
+  gap: 20px;
 }
 
 @keyframes closesplash {
-    0% {
-        opacity: 1;
-    }
+  0% {
+    opacity: 1;
+  }
 
-    90% {
-        opacity: 1;
-    }
+  90% {
+    opacity: 1;
+  }
 
-    100% {
-        opacity: 0;
-    }
+  100% {
+    opacity: 0;
+  }
 }
 
 #splash img {
-    width: 100px;
-    height: 100px;
-    animation: fadeInAnimation ease-in-out 1.2s infinite;
+  width: 100px;
+  height: 100px;
+  animation: fadeInAnimation ease-in-out 1.2s infinite;
 }
 
 #splash h2 {
-    color: #ffffff93;
-
+  color: #ffffff93;
 }
 
 @keyframes fadeInAnimation {
-    0% {
-        opacity: 0;
-    }
+  0% {
+    opacity: 0;
+  }
 
-    50% {
-        opacity: 1;
-    }
+  50% {
+    opacity: 1;
+  }
 
-    100% {
-        opacity: 0;
-    }
+  100% {
+    opacity: 0;
+  }
 }
 
 .loginMain {
-    display: none;
-    justify-content: center;
-    align-items: center;
-    transition: all 1s ease;
-    font-family: "Nunito" !important;
-    height: 100vh;
-    width: 100vw;
-    opacity: 0;
-    background: url(../assests/loginbg.JPG);
-    background-size: cover;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  transition: all 1s ease;
+  font-family: "Nunito" !important;
+  height: 100vh;
+  width: 100vw;
+  opacity: 0;
+  background: url(../assests/loginbg.JPG);
+  background-size: cover;
 }
 
 .loginMain .signin {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 50px;
-    backdrop-filter: blur(1px);
-
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 50px;
+  backdrop-filter: blur(1px);
 }
 
 .loginMain .signin img {
-    width: 120px;
-    height: 120px;
-    object-fit: cover;
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
 }
 
 .loginMain .signin .signinRow {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
 .loginMain .signin .signinRow #signinUser {
-    transition: all 500ms ease;
-
+  transition: all 500ms ease;
 }
 
 .loginMain .signin .signinRow #signinPass {
-    transition: all 500ms ease;
-    position: absolute;
-    opacity: 0;
-    z-index: -999;
+  transition: all 500ms ease;
+  position: absolute;
+  opacity: 0;
+  z-index: -999;
 }
 
 .loginMain .signin input::placeholder {
-    color: white;
+  color: white;
 }
 
 .loginMain .signin input {
-    caret-color: #ffffff4f;
-    margin-left: 40px;
-    border: 2px solid transparent;
-    color: white;
-    border-radius: 10px;
-    width: 200px;
-    height: 35px;
-    padding: 0 20px;
-    font-size: 16px;
-    text-align: center;
-    font-family: "Nunito" !important;
-    transition: all 150ms ease-in-out;
-    background: rgba(255, 255, 255, 0.452);
+  caret-color: #ffffff4f;
+  margin-left: 40px;
+  border: 2px solid transparent;
+  color: white;
+  border-radius: 10px;
+  width: 200px;
+  height: 35px;
+  padding: 0 20px;
+  font-size: 16px;
+  text-align: center;
+  font-family: "Nunito" !important;
+  transition: all 150ms ease-in-out;
+  background: rgba(255, 255, 255, 0.452);
 }
 
 .loginMain .signin .signinButton {
-    border: none;
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    transition: all 300ms ease-in-out;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transform: rotate(180deg);
-    background: #EF557A;
+  border: none;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  transition: all 300ms ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transform: rotate(180deg);
+  background: #ef557a;
 }
 
 .loginMain .signin .signinButton:hover {
-    transition: all 300ms ease;
-    background: #ef5579b9;
+  transition: all 300ms ease;
+  background: #ef5579b9;
 }
 
 .loginMain .signin .signinButton:active {
-    transform: scale(0.9);
+  transform: scale(0.9);
 }
 
 .loginMain .signin .activeSignin {
-    border: none;
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    transition: all 300ms ease-in-out;
-    background: #b9b5b6c4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transform: rotate(0deg);
+  border: none;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  transition: all 300ms ease-in-out;
+  background: #b9b5b6c4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transform: rotate(0deg);
 }
 
 .loginMain .signin .activeSignin:active {
-    transform: scale(0.9);
+  transform: scale(0.9);
 }
 
 .loginMain .signin .activeSignin:hover {
-    transition: all 300ms ease;
-    background: #b9b5b6a1;
+  transition: all 300ms ease;
+  background: #b9b5b6a1;
 }
 
 .loginMain .signin button img {
-    width: 25px;
-    height: 25px;
+  width: 25px;
+  height: 25px;
 }
 
 .loginMain .signin button.loading img {
-    display: none;
+  display: none;
 }
 
 .loginMain .signin button.loading {
-    width: 35px;
-    height: 35px;
-    border: 2px solid transparent;
-    border-top: 2px solid #EF557A;
-    border-left: 2px solid #EF557A;
-    background-color: transparent !important;
-    border-spacing: 20px;
-    animation: Loadrotate 1.2s linear infinite;
+  width: 35px;
+  height: 35px;
+  border: 2px solid transparent;
+  border-top: 2px solid #ef557a;
+  border-left: 2px solid #ef557a;
+  background-color: transparent !important;
+  border-spacing: 20px;
+  animation: Loadrotate 1.2s linear infinite;
 }
 
 @keyframes Loadrotate {
-    from {
-        transform: scale(0.8) rotate(0deg);
-    }
+  from {
+    transform: scale(0.8) rotate(0deg);
+  }
 
-    to {
-        transform: scale(0.8) rotate(360deg);
-    }
+  to {
+    transform: scale(0.8) rotate(360deg);
+  }
 }
 
 .loginMain p {
-    color: rgb(180, 180, 212);
-    cursor: pointer;
+  color: rgb(180, 180, 212);
+  cursor: pointer;
 }
 
 .loginMain p:hover {
-    color: rgba(180, 180, 212, 0.733);
+  color: rgba(180, 180, 212, 0.733);
 }
 
 .loginMain .signup {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 25px;
-    backdrop-filter: blur(1px);
-    position: absolute;
-    display: none;
-
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 25px;
+  backdrop-filter: blur(1px);
+  position: absolute;
+  display: none;
 }
 
 .loginMain .signup img {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    object-fit: cover;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .loginMain .signup input::placeholder {
-    color: white;
+  color: white;
 }
 
 .loginMain .signup input {
-    caret-color: #ffffff4f;
-    border: 2px solid transparent;
-    color: white;
-    border-radius: 10px;
-    width: 200px;
-    height: 35px;
-    padding: 0 20px;
-    font-size: 16px;
-    text-align: center;
-    font-family: "Nunito" !important;
-    transition: all 150ms ease-in-out;
-    background: rgba(255, 255, 255, 0.452);
+  caret-color: #ffffff4f;
+  border: 2px solid transparent;
+  color: white;
+  border-radius: 10px;
+  width: 200px;
+  height: 35px;
+  padding: 0 20px;
+  font-size: 16px;
+  text-align: center;
+  font-family: "Nunito" !important;
+  transition: all 150ms ease-in-out;
+  background: rgba(255, 255, 255, 0.452);
 }
 
 .loginMain .signup button {
-    border: none;
-    width: 200px;
-    height: 35px;
-    transition: all 300ms ease-in-out;
-    background: #EF557A;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    font-size: 16px;
-    text-align: center;
-    font-family: "Nunito" !important;
-    color: white;
-    border-radius: 10px;
+  border: none;
+  width: 200px;
+  height: 35px;
+  transition: all 300ms ease-in-out;
+  background: #ef557a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 16px;
+  text-align: center;
+  font-family: "Nunito" !important;
+  color: white;
+  border-radius: 10px;
 }
 
 .loginMain .signup button:active {
-    transform: scale(0.98);
+  transform: scale(0.98);
 }
 
 .loginMain .signup button:hover {
-    transition: all 300ms ease;
-    background: #ef5579ce;
+  transition: all 300ms ease;
+  background: #ef5579ce;
 }
 
 .loginMain .signup button.loading {
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    border: 2px solid transparent;
-    border-top: 2px solid #EF557A;
-    border-left: 2px solid #EF557A;
-    background-color: transparent;
-    border-spacing: 20px;
-    animation: Loadrotate 1.2s linear infinite;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  border-top: 2px solid #ef557a;
+  border-left: 2px solid #ef557a;
+  background-color: transparent;
+  border-spacing: 20px;
+  animation: Loadrotate 1.2s linear infinite;
 }
 
 /* Signin End */
 
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: all 150ms ease-out;
-    font-family: "Nunito" !important;
-    background: url(../assests/bg.png);
-    background-size: cover;
-    height: 100vh;
-    width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 150ms ease-out;
+  font-family: "Nunito" !important;
+  background: url(../assests/bg.png);
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
 }
 
 .alert {
-    width: fit-content;
-    height: fit-content;
-    padding: 5px 8px;
-    border-radius: 10px;
-    background-color: #EF557A;
-    color: #fff;
-    position: absolute;
-    bottom: 10px;
-    opacity: 0;
-    transition: all 1s ease;
+  width: fit-content;
+  height: fit-content;
+  padding: 5px 8px;
+  border-radius: 10px;
+  background-color: #ef557a;
+  color: #fff;
+  position: absolute;
+  bottom: 10px;
+  opacity: 0;
+  transition: all 1s ease;
 }
 
 .alertnow {
-    opacity: 1;
-    bottom: 50px;
+  opacity: 1;
+  bottom: 50px;
 }
 
 .successalertnow {
-    opacity: 1;
-    bottom: 50px;
-    background-color: #55ef76;
-
+  opacity: 1;
+  bottom: 50px;
+  background-color: #55ef76;
 }
 
 .sidebar {
-    width: 70px;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.445);
-    position: fixed;
-    left: 0px;
-    padding: 7px;
-    color: #fff !important;
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    flex-direction: column;
-    gap: 10px;
+  width: 70px;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.445);
+  position: fixed;
+  left: 0px;
+  padding: 7px;
+  color: #fff !important;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
 }
 
-
 .sidebar .titlebox {
-    width: 100%;
-    height: 60px;
-    font-weight: 800;
-    font-size: 24px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  height: 60px;
+  font-weight: 800;
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .sidebar .titlebox span {
-    color: #EF557A;
-    font-weight: 800;
-    font-size: 25px;
+  color: #ef557a;
+  font-weight: 800;
+  font-size: 25px;
 }
 
 .sidebar .box {
-    width: 100%;
-    height: 55px;
-    border-radius: 5px;
-    font-size: 12px;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
+  width: 100%;
+  height: 55px;
+  border-radius: 5px;
+  font-size: 12px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
 }
 
 .sidebar .box img {
-    width: 20px;
-    height: 20px;
+  width: 20px;
+  height: 20px;
 }
 
 .sidebar .box.active {
-    background: #ffffff25;
-
+  background: #ffffff25;
 }
 
 .box__right,
@@ -416,12 +406,12 @@ body {
 .box__top,
 .box__bottom,
 .box__center {
-    position: absolute;
-    width: inherit;
-    height: inherit;
-    text-align: center;
-    line-height: inherit;
-    transition: transform .1s ease;
+  position: absolute;
+  width: inherit;
+  height: inherit;
+  text-align: center;
+  line-height: inherit;
+  transition: transform 0.1s ease;
 }
 
 .box__right:before,
@@ -429,11 +419,11 @@ body {
 .box__top:before,
 .box__bottom:before,
 .box__center:before {
-    position: absolute;
-    content: '';
-    width: 70.71%;
-    height: 70.71%;
-    transform: rotate(45deg);
+  position: absolute;
+  content: "";
+  width: 70.71%;
+  height: 70.71%;
+  transform: rotate(45deg);
 }
 
 .box__right:hover,
@@ -441,8 +431,8 @@ body {
 .box__top:hover,
 .box__bottom:hover,
 .box__center:hover {
-    transform: translateX(0);
-    z-index: 1;
+  transform: translateX(0);
+  z-index: 1;
 }
 
 .box__right:hover:before,
@@ -450,725 +440,704 @@ body {
 .box__top:hover:before,
 .box__bottom:hover:before,
 .box__center:hover:before {
-    width: 100%;
-    height: 100%;
-    transform: none;
+  width: 100%;
+  height: 100%;
+  transform: none;
 }
 
 .box__right {
-
-    background: #ffffff25;
-    transform: translateX(100%);
+  background: #ffffff25;
+  transform: translateX(100%);
 }
 
 .box__right:before {
-    right: 100%;
-    bottom: 0;
-    transform-origin: 100% 100%;
+  right: 100%;
+  bottom: 0;
+  transform-origin: 100% 100%;
 }
 
-
 .box__left {
-    background: #ffffff25;
-    transform: translateX(-100%);
+  background: #ffffff25;
+  transform: translateX(-100%);
 }
 
 .box__left:before {
-    left: 100%;
-    transform-origin: 0 0;
+  left: 100%;
+  transform-origin: 0 0;
 }
 
 .box__top {
-    background: #ffffff25;
-    transform: translateY(-100%);
+  background: #ffffff25;
+  transform: translateY(-100%);
 }
 
 .box__top:before {
-    top: 100%;
-    right: 0;
-    transform-origin: 100% 0;
+  top: 100%;
+  right: 0;
+  transform-origin: 100% 0;
 }
 
 .box__bottom {
-    background: #ffffff25;
-    transform: translateY(100%);
+  background: #ffffff25;
+  transform: translateY(100%);
 }
 
 .box__bottom:before {
-    bottom: 100%;
-    left: 0;
-    transform-origin: 0 100%;
+  bottom: 100%;
+  left: 0;
+  transform-origin: 0 100%;
 }
 
 .box__center {
-    z-index: -1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 4px;
+  z-index: -1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .sidebar .sidebarWindows {
-    position: absolute;
-    bottom: 10px;
-    border-radius: 7px;
+  position: absolute;
+  bottom: 10px;
+  border-radius: 7px;
 }
 
 .sidebar .sidebarWindows img {
-    width: 30px;
-    height: 30px;
+  width: 30px;
+  height: 30px;
 }
-
 
 /* WinBox Start*/
 .winbox {
-    background-color: rgba(0, 0, 0, 0.562);
+  background-color: rgba(0, 0, 0, 0.562);
 }
 
 .winbox .wb-full {
-    display: none;
+  display: none;
 }
 
 .winbox .wb-min {
-    background-position: 7px;
-    opacity: 0.8;
-
+  background-position: 7px;
+  opacity: 0.8;
 }
 
 .winbox .wb-min:hover {
-    background-color: #ffffff2d;
+  background-color: #ffffff2d;
 }
 
 .winbox .wb-max:hover {
-    background-color: #ffffff2d;
+  background-color: #ffffff2d;
 }
 
 .winbox .wb-close:hover {
-    background-color: rgba(255, 0, 0, 0.829);
+  background-color: rgba(255, 0, 0, 0.829);
 }
 
 .winbox .wb-drag {
-    cursor: default;
+  cursor: default;
 }
 
 .wb-icon {
-    width: 18px;
-    background-size: 18px 18px;
+  width: 18px;
+  background-size: 18px 18px;
 }
-
 
 /* WinBox End*/
 
-
-
 /* Main Start */
 .main {
-    position: absolute;
-    right: 0px;
-    width: calc(100% - 70px);
-    height: 100%;
-    padding: 30px 25px;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    gap: 20px;
-    align-content: flex-start
+  position: absolute;
+  right: 0px;
+  width: calc(100% - 70px);
+  height: 100%;
+  padding: 30px 25px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 20px;
+  align-content: flex-start;
 }
 
 /* Clock Start */
 .myClock {
-    width: fit-content;
-    height: fit-content;
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-
+  width: fit-content;
+  height: fit-content;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
 }
 
 .dateTime {
-    position: absolute;
-    height: 60px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    margin-top: -80px;
+  position: absolute;
+  height: 60px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: -80px;
 }
 
 .digital {
-    color: #fff;
+  color: #fff;
 }
 
 .digitalDate {
-    color: #c9d617;
-
+  color: #c9d617;
 }
 
 .clock {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    background: #181717;
-    background-size: cover;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 -15px 15px rgba(255, 255, 255, 0.05),
-        inset 0 -15px 15px rgba(255, 255, 255, 0.05), 0 15px 15px rgba(0, 0, 0, 0.3),
-        inset 0 15px 15px rgba(0, 0, 0, 0.3);
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: #181717;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 -15px 15px rgba(255, 255, 255, 0.05),
+    inset 0 -15px 15px rgba(255, 255, 255, 0.05), 0 15px 15px rgba(0, 0, 0, 0.3),
+    inset 0 15px 15px rgba(0, 0, 0, 0.3);
 }
 
 .clock::before {
-    content: "";
-    width: 15px;
-    height: 15px;
-    position: absolute;
-    background-color: #fff;
-    border-radius: 50%;
-    z-index: 2;
+  content: "";
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  background-color: #fff;
+  border-radius: 50%;
+  z-index: 2;
 }
 
 .hour,
 .min,
 .sec {
-    position: absolute;
+  position: absolute;
 }
 
 .hr {
-    width: 90px;
-    height: 90px;
+  width: 90px;
+  height: 90px;
 }
 
 .mn {
-    width: 140px;
-    height: 140px;
+  width: 140px;
+  height: 140px;
 }
 
 .sc {
-    width: 160px;
-    height: 160px;
+  width: 160px;
+  height: 160px;
 }
 
 .hr,
 .mn,
 .sc {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .hr::before {
-    content: "";
-    width: 8px;
-    height: 50px;
-    background-color: #ff105e;
-    z-index: 1;
-    border-radius: 5px;
+  content: "";
+  width: 8px;
+  height: 50px;
+  background-color: #ff105e;
+  z-index: 1;
+  border-radius: 5px;
 }
 
 .mn::before {
-    content: "";
-    width: 6px;
-    height: 80px;
-    background-color: rgb(15, 105, 207);
-    z-index: 0;
-    border-radius: 5px;
+  content: "";
+  width: 6px;
+  height: 80px;
+  background-color: rgb(15, 105, 207);
+  z-index: 0;
+  border-radius: 5px;
 }
 
 .sc::before {
-    content: "";
-    width: 2px;
-    height: 100px;
-    background-color: #fff;
-    z-index: 0;
-    border-radius: 5px;
+  content: "";
+  width: 2px;
+  height: 100px;
+  background-color: #fff;
+  z-index: 0;
+  border-radius: 5px;
 }
 
 /* Clock End */
 
 /* Context Menu Start */
 .context-menu {
-    position: fixed;
-    z-index: 10000;
-    width: 180px;
-    background: #1b1a1a;
-    border-radius: 5px;
-    transform: scale(0);
-    transform-origin: top left;
+  position: fixed;
+  z-index: 10000;
+  width: 180px;
+  background: #1b1a1a;
+  border-radius: 5px;
+  transform: scale(0);
+  transform-origin: top left;
 }
 
 .context-menu.visible {
-    transform: scale(1);
-    transition: transform 200ms ease-in-out;
+  transform: scale(1);
+  transition: transform 200ms ease-in-out;
 }
 
 .context-menu .item {
-    padding: 8px 10px;
-    font-size: 15px;
-    color: #eee;
-    cursor: pointer;
-    border-radius: inherit;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  padding: 8px 10px;
+  font-size: 15px;
+  color: #eee;
+  cursor: pointer;
+  border-radius: inherit;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .context-menu .item img {
-    width: 15px;
-    height: 15px;
+  width: 15px;
+  height: 15px;
 }
 
 .context-menu .item:hover {
-    background: #343434;
+  background: #343434;
 }
 
 /* Menu */
 .sidebarWindowsMenu {
-    position: fixed;
-    z-index: 10000;
-    width: 180px;
-    background: #1b1a1adf;
-    border-radius: 5px;
-    transform: scale(0);
-    transform-origin: bottom left;
+  position: fixed;
+  z-index: 10000;
+  width: 180px;
+  background: #1b1a1adf;
+  border-radius: 5px;
+  transform: scale(0);
+  transform-origin: bottom left;
 }
 
 .sidebarWindowsMenu.visible {
-    transform: scale(1);
-    transition: transform 200ms ease-in-out;
+  transform: scale(1);
+  transition: transform 200ms ease-in-out;
 }
 
 .sidebarWindowsMenu .item {
-    padding: 8px 10px;
-    font-size: 15px;
-    color: #eee;
-    cursor: pointer;
-    border-radius: inherit;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  padding: 8px 10px;
+  font-size: 15px;
+  color: #eee;
+  cursor: pointer;
+  border-radius: inherit;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .sidebarWindowsMenu .item img {
-    width: 15px;
-    height: 15px;
+  width: 15px;
+  height: 15px;
 }
 
 .sidebarWindowsMenu .item:hover {
-    background: #343434;
+  background: #343434;
 }
 
 .sidebarWindowsMenu .currentUserInfo {
-    height: 50px;
+  height: 50px;
 }
 
 .sidebarWindowsMenu .currentUserInfo img {
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    background-color: transparent;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: transparent;
 }
 
 .sidebarWindowsMenu hr {
-    border: 0.1px solid #ffffff1a;
+  border: 0.1px solid #ffffff1a;
 }
 
 .sidebarWindowsMenu .logoutMenu:hover {
-    background-color: rgba(223, 47, 47, 0.548);
+  background-color: rgba(223, 47, 47, 0.548);
 }
 
 /* Context Menu End */
 
 .appsIcon {
-    width: 75px;
-    height: 75px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 3px;
-    padding: 20px;
-    border-radius: 5px;
-    cursor: pointer;
+  width: 75px;
+  height: 75px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 3px;
+  padding: 20px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .appsIcon p {
-    font-size: 12px;
-    color: white;
-    text-align: center;
-    line-height: 10px;
-    min-width: 50px;
-    white-space: pre-wrap;
+  font-size: 12px;
+  color: white;
+  text-align: center;
+  line-height: 10px;
+  min-width: 50px;
+  white-space: pre-wrap;
 }
 
 .appsIcon img {
-    width: 45px;
-    height: 45px;
+  width: 45px;
+  height: 45px;
 }
 
 .appsIcon:hover {
-    background: #bdbdbd48;
+  background: #bdbdbd48;
 }
 
 /* AppStore Start */
 #appStoreMain {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
 .appStoreSideBar {
-    width: 70px;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.445);
-    position: fixed;
-    left: 0px;
-    padding: 7px;
-    color: #fff !important;
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    flex-direction: column;
-    gap: 10px;
+  width: 70px;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.445);
+  position: fixed;
+  left: 0px;
+  padding: 7px;
+  color: #fff !important;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .storeTheme .wb-body {
-    background: #1e1d1d !important;
-    overflow: hidden;
-
+  background: #1e1d1d !important;
+  overflow: hidden;
 }
 
 .appStoreSideBar .box {
-    width: 60px;
-    height: 55px;
-    border-radius: 5px;
-    font-size: 10px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 5px;
+  width: 60px;
+  height: 55px;
+  border-radius: 5px;
+  font-size: 10px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 5px;
 }
 
 .appStoreSideBar .box img {
-    width: 20px;
-    height: 20px;
+  width: 20px;
+  height: 20px;
 }
 
 .appStoreSideBar .box:hover {
-    background: #ffffff25;
+  background: #ffffff25;
 }
 
 .appStoreSideBar .appStoreUser {
-    position: absolute;
-    bottom: 5px;
+  position: absolute;
+  bottom: 5px;
 }
 
 .appStoreSideBar .appStoreUser img {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    object-fit: cover;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .appStoreMainBody {
-    width: calc(100% - 70px);
-    height: 100%;
-    margin-left: 70px;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: start;
-    flex-direction: column;
+  width: calc(100% - 70px);
+  height: 100%;
+  margin-left: 70px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  flex-direction: column;
 }
 
 .appStoreMainBody .section {
-    width: 100%;
-    height: 100%;
-    overflow-y: scroll;
-    border-radius: 5px;
-    padding: 10px;
-
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  border-radius: 5px;
+  padding: 10px;
 }
 
-.appStoreMainBody .section>p {
-    font-size: 26px;
-    font-weight: 600;
+.appStoreMainBody .section > p {
+  font-size: 26px;
+  font-weight: 600;
 }
 
 .appStoreMainBody .section .appbox p {
-    font-size: 18px;
+  font-size: 18px;
 }
 
 .appStoreMainBody .section .row {
-    margin-top: 10px;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: start;
-    flex-wrap: wrap;
-    padding: 10px;
-    border-radius: 10px;
-
+  margin-top: 10px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  flex-wrap: wrap;
+  padding: 10px;
+  border-radius: 10px;
 }
 
 .appStoreMainBody ::-webkit-scrollbar {
-    width: 8px;
-    background-color: white;
-    border-radius: 4px
+  width: 8px;
+  background-color: white;
+  border-radius: 4px;
 }
 
 .appStoreMainBody ::-webkit-scrollbar-thumb {
-    background-color: rgba(26, 24, 24, 0.582);
-    border-radius: 4px
+  background-color: rgba(26, 24, 24, 0.582);
+  border-radius: 4px;
 }
 
 .appStoreMainBody .section .appbox {
-    width: 215px;
-    height: 250px;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    flex-direction: column;
-    cursor: pointer;
+  width: 215px;
+  height: 250px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  cursor: pointer;
 }
 
 .appStoreMainBody .section .appbox:hover {
-    background: #ffffff25;
-    border-radius: 10px;
-
+  background: #ffffff25;
+  border-radius: 10px;
 }
 
 .appStoreMainBody .section img {
-    width: 140px;
-    height: 140px;
-    object-fit: cover;
-    border-radius: 10px;
-
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
 .appInstallWindow {
-    display: none;
-    width: calc(100% - 70px);
-    height: 100%;
-    background: rgb(31, 31, 31);
-    position: absolute;
-    top: 0;
-    left: 70px;
-    overflow-y: scroll;
+  display: none;
+  width: calc(100% - 70px);
+  height: 100%;
+  background: rgb(31, 31, 31);
+  position: absolute;
+  top: 0;
+  left: 70px;
+  overflow-y: scroll;
 }
 
 .appInstallWindow.appInstallWindowactive {
-    display: flex;
-    animation: openwindow 150ms ease;
+  display: flex;
+  animation: openwindow 150ms ease;
 }
 
 @keyframes openwindow {
-    from {
-        opacity: 0;
-    }
+  from {
+    opacity: 0;
+  }
 
-    to {
-        opacity: 1;
-    }
+  to {
+    opacity: 1;
+  }
 }
 
 .appInstallWindow .appbox {
-    padding: 50px 50px 600px 50px;
-    display: flex;
-    gap: 10px;
-    align-items: start;
-    flex-direction: column;
-    cursor: default;
+  padding: 50px 50px 600px 50px;
+  display: flex;
+  gap: 10px;
+  align-items: start;
+  flex-direction: column;
+  cursor: default;
 }
 
 .appInstallWindow .appbox hr {
-    width: 100%;
-    border: 0.8px solid rgba(59, 58, 58, 0.541);
-    margin: 15px auto;
+  width: 100%;
+  border: 0.8px solid rgba(59, 58, 58, 0.541);
+  margin: 15px auto;
 }
 
 .appInstallWindow .appbox .appTitle {
-    font-size: 28px;
-    font-weight: 600;
+  font-size: 28px;
+  font-weight: 600;
 }
 
 .appInstallWindow .appbox h3 {
-    font-size: 22px;
-    font-weight: 800;
-    text-decoration: underline;
-    text-underline-offset: 5px;
-    margin-bottom: 15px;
+  font-size: 22px;
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  margin-bottom: 15px;
 }
 
 .appInstallWindow .appbox .about {
-    width: 100%;
-    height: fit-content;
-    background-color: #1b1a1a;
-    font-size: 16px;
-    padding: 15px;
-    border-radius: 5px;
+  width: 100%;
+  height: fit-content;
+  background-color: #1b1a1a;
+  font-size: 16px;
+  padding: 15px;
+  border-radius: 5px;
 }
 
 .appInstallWindow .appbox .about p {
-    text-indent: 30px;
-
+  text-indent: 30px;
 }
 
 .appInstallWindow img {
-    width: 140px;
-    height: 140px;
-    object-fit: cover;
-    border-radius: 10px;
-
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
 .appHead {
-    width: 100%;
-    display: flex;
+  width: 100%;
+  display: flex;
 }
 
 .appHead .appHeadLeft {
-    height: 100%;
+  height: 100%;
 }
 
 .appHead .appHeadRight {
-    margin-left: 80px;
-    height: 100%;
+  margin-left: 80px;
+  height: 100%;
 }
 
 .appHeadRight {
-    display: flex;
-    justify-content: center;
-    align-items: start;
-    flex-direction: column;
-    gap: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .appHead button {
-    height: fit-content;
-    background: #03d827e7;
-    border: none;
-    color: white;
-    font-size: 18px;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.2s ease;
+  height: fit-content;
+  background: #03d827e7;
+  border: none;
+  color: white;
+  font-size: 18px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .appHead button:hover {
-    background: #03d827af;
-
-
+  background: #03d827af;
 }
 
 .backBtn {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    cursor: pointer;
-    transition: all 0.5s ease;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  cursor: pointer;
+  transition: all 0.5s ease;
 }
 
 .backBtn:hover {
-    transform: scale(1.2);
+  transform: scale(1.2);
 }
 
 .backBtn img {
-    width: 30px;
-    height: 30px;
+  width: 30px;
+  height: 30px;
 }
 
 /* AppStore End */
 
 /* About Start */
 .aboutTheme {
-    border-radius: 10px;
+  border-radius: 10px;
 }
 
 .aboutTheme {
-    background-color: #08AEEA;
-    background-image: linear-gradient(90deg, #08AEEA 0%, #2AF598 100%);
-    box-shadow: none;
+  background-color: #08aeea;
+  background-image: linear-gradient(90deg, #08aeea 0%, #2af598 100%);
+  box-shadow: none;
 }
 
 .aboutTheme .wb-title,
 .aboutTheme .wb-min,
 .aboutTheme .wb-max {
-    display: none;
+  display: none;
 }
 
 .aboutTheme .wb-body {
-    border-radius: 0 0 10px 10px;
+  border-radius: 0 0 10px 10px;
 }
 
 #aboutMain {
-    height: 100%;
-    width: 100%;
-    user-select: none;
-    overflow: hidden;
-
+  height: 100%;
+  width: 100%;
+  user-select: none;
+  overflow: hidden;
 }
 
 #aboutMain .aboutHead {
-    background-color: #08AEEA;
-    background-image: linear-gradient(90deg, #08AEEA 0%, #2AF598 100%);
-    height: 30%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  background-color: #08aeea;
+  background-image: linear-gradient(90deg, #08aeea 0%, #2af598 100%);
+  height: 30%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #aboutMain .aboutHead h3 {
-    font-size: 58px;
-    font-weight: 800;
-    color: #EF557A;
-    letter-spacing: -2px;
-
+  font-size: 58px;
+  font-weight: 800;
+  color: #ef557a;
+  letter-spacing: -2px;
 }
 
 #aboutMain .aboutHead h3 span {
-    font-size: 24px;
-    font-weight: 700;
-    color: #f0f0f0fa;
-    letter-spacing: 0.1px !important;
-
+  font-size: 24px;
+  font-weight: 700;
+  color: #f0f0f0fa;
+  letter-spacing: 0.1px !important;
 }
 
 #aboutMain .aboutBody {
-    background-color: #ffffff;
-    height: 70%;
-    width: 100%;
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    flex-direction: column;
+  background-color: #ffffff;
+  height: 70%;
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  flex-direction: column;
 }
 
 #aboutMain .aboutBody .content p {
-    text-indent: 50px;
+  text-indent: 50px;
 }
 
 #aboutMain .aboutBody .githubUser {
-    color: #1d9bf0;
-    cursor: pointer;
-    text-decoration: none;
+  color: #1d9bf0;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 #aboutMain .aboutBody .githubUser:hover {
-    color: #1d9cf0d3;
+  color: #1d9cf0d3;
 }
 
 .aboutTheme .wb-close {
-    width: 40px;
-    background-position: center;
-    border-radius: 0 10px 0 0;
+  width: 40px;
+  background-position: center;
+  border-radius: 0 10px 0 0;
 }
 
 /* About End */
@@ -1179,52 +1148,59 @@ body {
 /* filemanager sidebar */
 
 .wrapper {
-    display: flex;
-  }
-  .indicator {
-    /* padding: 1.5rem 0; */
-    /* background: blue; */
-    height: 100%;
-  }
-  .indicator li {
-    display: flex;
-    align-items: center;
-    grid-gap: 0.5rem;
-    padding: 10px 2rem;
-    cursor: pointer;
-    font-size: 15px;
-    font-weight: 600;
-    color: black;
-    border-right: 2px solid transparent;
-  }
-  .indicator li img {
-    height: 18px;
-    width: 18px;
-  }
-  .indicator li:hover {
-    background: #ccc;
-  }
-  .indicator li.active {
-    border-right-color: black;
-    background: #ccc;
-  }
-  .content {
-    padding: 1.5rem 2rem;
-  }
-  .content li {
-    display: none;
-  }
-  .content li.active {
-    display: block;
-  }
-  .content li h1 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: black;
-    margin-bottom: 0.75rem;
-  }
-  .content li p {
-    margin-bottom: 0.5rem;
-    font-size: 0.875rem;
-  }
+  display: flex;
+}
+.indicator {
+  /* background: #ccc; */
+  height: 100%;
+  width: 15%;
+  position: sticky;
+  top: 0;
+}
+.indicator li {
+  display: flex;
+  align-items: center;
+  grid-gap: 0.5rem;
+  padding: 10px 2rem;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  color: black;
+  border-right: 2px solid transparent;
+}
+.indicator li img {
+  height: 18px;
+  width: 18px;
+}
+.indicator li:hover {
+  background: #ccc;
+}
+.indicator li.active {
+  border-right-color: black;
+  background: #ccc;
+}
+.content {
+  padding: 1.5rem 2rem;
+  /* margin-left: 15%; */
+}
+
+.content li {
+  display: none;
+}
+.content li.active {
+  display: block;
+}
+
+.content li img {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  margin-right: 20px;
+  height: 70px;
+  width: 70px;
+  cursor: pointer;
+}
+.content li figcaption {
+  margin-bottom: 0.5rem;
+  font-size: 15px;
+}
 /* Filemanager End */
