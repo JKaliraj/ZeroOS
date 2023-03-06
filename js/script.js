@@ -18,7 +18,9 @@ const body = document.querySelector("body"),
   appStoreGames = document.querySelector(".appStoreGames"),
   appInstallToMain = document.querySelector(".appInstallToMain"),
   aboutContextMenu = document.querySelector(".aboutContextMenu"),
-  filemanager = document.querySelector(".filemanager");
+  filemanager = document.querySelector(".filemanager"),
+  backgroundChanger = document.querySelector(".BackgroundWin"),
+  backgroundContent = document.querySelector(".bckwin");
 
 const loginMain = document.querySelector(".loginMain"),
   signinDiv = document.querySelector(".signin"),
@@ -468,10 +470,10 @@ sidebarFile.addEventListener("click", () => {
         document.querySelector(".active").classList.remove("active");
         document.querySelector(".sidebarHome").classList.add("active");
       },
-      mount:filemanager,
+      mount: filemanager,
     });
   }
-  
+
   if (sidebarFileMini == 1) {
     filebox.restore();
     filebox.focus();
@@ -479,26 +481,25 @@ sidebarFile.addEventListener("click", () => {
 
   //  to open a tab content based on file manager  a button click
 
-const allIndicator = document.querySelectorAll(".indicator li");
-const allContent = document.querySelectorAll(".content li");
+  const allIndicator = document.querySelectorAll(".indicator li");
+  const allContent = document.querySelectorAll(".content li");
 
-allIndicator.forEach((item) => {
-  item.addEventListener("click", function () {
-    const content = document.querySelector(this.dataset.target);
+  allIndicator.forEach((item) => {
+    item.addEventListener("click", function () {
+      const content = document.querySelector(this.dataset.target);
 
-    allIndicator.forEach((i) => {
-      i.classList.remove("active");
+      allIndicator.forEach((i) => {
+        i.classList.remove("active");
+      });
+
+      allContent.forEach((i) => {
+        i.classList.remove("active");
+      });
+
+      content.classList.add("active");
+      this.classList.add("active");
     });
-
-    allContent.forEach((i) => {
-      i.classList.remove("active");
-    });
-
-    content.classList.add("active");
-    this.classList.add("active");
   });
-});
-
 });
 
 // File End
@@ -679,3 +680,14 @@ aboutContextMenu.addEventListener("click", () => {
   });
 });
 // About End
+
+// background change
+
+backgroundChanger.addEventListener("click", () => {
+  const backgroundBox = new WinBox({
+    title: "Background",
+    width: "600px",
+    height: "600px",
+    mount: backgroundContent,
+  });
+});
