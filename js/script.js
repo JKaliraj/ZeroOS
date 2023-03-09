@@ -35,18 +35,26 @@ const loginMain = document.querySelector(".loginMain"),
   signupCPass = signupDiv.querySelector("#signupCPass"),
   signupButton = signupDiv.querySelector(".signupButton");
 
+// Development Begin
+container.style.display = "flex";
+document.querySelector(".loginMain").style.opacity = "0";
+document.querySelector("#splash").style.display = "none";
+document.querySelector(".loginMain").style.display = "none";
+document.querySelector(".container").style.display = "flex";
+// End (Remove this in production)
+
 // Login Start
 var username = localStorage.getItem("username");
 var password = localStorage.getItem("password");
 if (username) {
   usernameInput.value = username;
 }
-wait(2000).then(() => {
-  document.querySelector("#splash").style.display = "none";
-  document.querySelector(".loginMain").style.opacity = "1";
-  document.querySelector(".loginMain").style.display = "flex";
-  document.querySelector("#signinUser").focus();
-});
+// wait(2000).then(() => {
+//   document.querySelector("#splash").style.display = "none";
+//   document.querySelector(".loginMain").style.opacity = "1";
+//   document.querySelector(".loginMain").style.display = "flex";
+//   document.querySelector("#signinUser").focus();
+// });
 
 function login() {
   var pass = passwordInput.value;
@@ -313,6 +321,9 @@ maximizeWindow.addEventListener("click", () => {
   if (body.requestFullscreen) {
     body.requestFullscreen();
   }
+  document.querySelector(".restoreWindow").addEventListener("click", () => {
+      body.exitFullscreen();
+  })
 });
 
 // Context Menu End
@@ -705,4 +716,8 @@ function showFullPreview(data) {
   data.classList.toggle("bckimages");
   data.classList.toggle("bckimagesActive");
 }
+function applyWallpaper(wallpaper){
+  $('.container').css('background-image', 'url(' + wallpaper + ')');
+}
+
 // Background End
