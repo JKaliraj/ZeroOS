@@ -18,7 +18,9 @@ const body = document.querySelector("body"),
   appStoreGames = document.querySelector(".appStoreGames"),
   appInstallToMain = document.querySelector(".appInstallToMain"),
   aboutContextMenu = document.querySelector(".aboutContextMenu"),
-  filemanager = document.querySelector(".filemanager");
+  filemanager = document.querySelector(".filemanager"),
+  backgroundChanger = document.querySelector(".BackgroundWin"),
+  backgroundContent = document.querySelector("#bckwin");
 
 const loginMain = document.querySelector(".loginMain"),
   signinDiv = document.querySelector(".signin"),
@@ -134,7 +136,7 @@ function signinPassKeyPressed() {
     signinButton.setAttribute("onclick", "showuserInput()");
     usernameInput.style = "position:absolute;z-index:-999;opacity:0";
     passwordInput.style = "position:relative;z-index:999;opacity:1";
-  } 
+  }
   if (passwordInputLen.value.length > 0) {
     signinButton.classList.remove("activeSignin");
     signinButton.setAttribute("onclick", "login()");
@@ -462,8 +464,8 @@ sidebarFile.addEventListener("click", () => {
       y: "center",
       width: "80%",
       height: "80%",
-      minwidth:730,
-      minheight:520,
+      minwidth: 730,
+      minheight: 520,
       class: "filesTheme",
       onclose: function () {
         sidebarFileActive = 0;
@@ -471,10 +473,10 @@ sidebarFile.addEventListener("click", () => {
         document.querySelector(".active").classList.remove("active");
         document.querySelector(".sidebarHome").classList.add("active");
       },
-      mount:filemanager,
+      mount: filemanager,
     });
   }
-  
+
   if (sidebarFileMini == 1) {
     filebox.restore();
     filebox.focus();
@@ -482,25 +484,25 @@ sidebarFile.addEventListener("click", () => {
 
   //  to open a tab content based on file manager  a button click
 
-const allIndicator = document.querySelectorAll(".indicator li");
-const allContent = document.querySelectorAll(".content li");
+  const allIndicator = document.querySelectorAll(".indicator li");
+  const allContent = document.querySelectorAll(".content li");
 
-allIndicator.forEach((item) => {
-  item.addEventListener("click", function () {
-    const content = document.querySelector(this.dataset.target);
+  allIndicator.forEach((item) => {
+    item.addEventListener("click", function () {
+      const content = document.querySelector(this.dataset.target);
 
-    allIndicator.forEach((i) => {
-      i.classList.remove("active");
+      allIndicator.forEach((i) => {
+        i.classList.remove("active");
+      });
+
+      allContent.forEach((i) => {
+        i.classList.remove("active");
+      });
+
+      content.classList.add("active");
+      this.classList.add("active");
     });
-
-    allContent.forEach((i) => {
-      i.classList.remove("active");
-    });
-
-    content.classList.add("active");
-    this.classList.add("active");
   });
-});
 
 });
 
@@ -572,7 +574,7 @@ function openStore() {
   });
 }
 
-appStoreGames.addEventListener("click", () => {});
+appStoreGames.addEventListener("click", () => { });
 
 function showAppToInstall(appid) {
   appInstallToMain.addEventListener("click", () => {
@@ -682,3 +684,25 @@ aboutContextMenu.addEventListener("click", () => {
   });
 });
 // About End
+// Background Start
+
+backgroundChanger.addEventListener("click", () => {
+  const backgroundBox = new WinBox({
+    root: document.querySelector(".container"),
+    title: "Background",
+    icon: "assests/background.svg",
+    left: 70,
+    x: "center",
+    y: "center",
+    width: "60%",
+    height: "75%",
+    mount: backgroundContent,
+    modal: true
+  });
+});
+
+function showFullPreview(data) {
+  data.classList.toggle("bckimages");
+  data.classList.toggle("bckimagesActive");
+}
+// Background End

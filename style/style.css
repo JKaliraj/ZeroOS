@@ -783,7 +783,7 @@ body {
 
 .appsIcon {
     width: 75px;
-    height: 75px;
+    height: 80px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -792,13 +792,14 @@ body {
     padding: 20px;
     border-radius: 5px;
     cursor: pointer;
+    transition: all 200ms ease;
 }
 
 .appsIcon p {
     font-size: 12px;
-    color: white;
+    color: rgb(255, 255, 255);
     text-align: center;
-    line-height: 10px;
+    line-height: 11px;
     min-width: 50px;
     white-space: pre-wrap;
 }
@@ -810,6 +811,7 @@ body {
 
 .appsIcon:hover {
     background: #bdbdbd48;
+    color: rgb(255, 255, 255);
 }
 
 /* AppStore Start */
@@ -1178,72 +1180,162 @@ body {
 /* filemanager */
 
 /* filemanager sidebar */
-.filesTheme{
+.filesTheme {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
 }
-.filemanager{
+
+.filemanager {
     width: 100%;
     height: 100%;
     display: flex;
     overflow: hidden;
 }
-.filemanager .indicator{
+
+.filemanager .indicator {
     background-color: #faf8f8da;
     min-width: 18%;
     height: 100%;
     overflow: hidden;
 }
-.filemanager .indicator img{
+
+.filemanager .indicator img {
     width: 23px;
     height: 23px;
     object-fit: cover;
 }
-.filemanager .content{
+
+.filemanager .content {
     width: 83%;
     height: 100%;
     overflow-y: scroll;
 }
+
 .indicator li {
     display: flex;
     align-items: center;
     grid-gap: 0.5rem;
-    padding: 10px 2rem;
+    padding: 10px 20px;
     cursor: pointer;
     font-size: 15px;
     font-weight: 600;
     color: black;
     border-right: 2px solid transparent;
-  }
-  .indicator li img {
+}
+
+.indicator li img {
     height: 18px;
     width: 18px;
-  }
-  .indicator li:hover {
+}
+
+.indicator li:hover {
     background: #ccc;
-  }
-  .indicator li.active {
+}
+
+.indicator li.active {
     border-right-color: black;
     background: #ccc;
-  }
-  .content {
+}
+
+.content {
     padding: 1.5rem 2rem;
-  }
-  .content li {
+}
+
+.content li {
     display: none;
-  }
-  .content li.active {
+}
+
+.content li.active {
     display: block;
-  }
-  .content li h1 {
+}
+
+.content li h1 {
     font-size: 1.5rem;
     font-weight: 600;
     color: black;
     margin-bottom: 0.75rem;
-  }
-  .content li p {
+}
+
+.content li p {
     margin-bottom: 0.5rem;
     font-size: 0.875rem;
-  }
+}
+
+.content li img {
+    font-size: 1.5rem;
+    height: 70px;
+    width: 70px;
+    cursor: pointer;
+}
+
+.content li figcaption {
+    margin-bottom: 0.5rem;
+    font-size: 15px;
+}
+
+.myFile {
+    width: 100px;
+    height: 130px;
+    background-color: transparent;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 5px;
+    transition: all 300ms ease;
+    gap: 5px;
+}
+
+.myFile:hover {
+    background-color: #cccccc71;
+}
+
 /* Filemanager End */
+
+/* Background Start */
+#bckwin {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-wrap: wrap;
+    padding: 50px 30px;
+    gap: 10px;
+}
+
+.bckimages {
+    width: 200px;
+    height: 200px;
+    cursor: pointer;
+}
+
+.bckimages img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    transition: all 300ms ease;
+}
+
+.bckimages img:hover {
+    transform: scale(1.05);
+}
+
+.bckimagesActive {
+    overflow: hidden;
+    z-index: 999;
+}
+
+.bckimagesActive img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+}
+
+/* Background End */

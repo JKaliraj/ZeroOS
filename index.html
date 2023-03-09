@@ -58,7 +58,7 @@
       <div class="item" id="refresh"><img src="./assests/rotate-cw.svg" alt="">Refresh</div>
       <div class="item" id="maximizeWindow"><img src="./assests/maximize.svg" alt="">Fullscreen</div>
       <div class="item"><img src="./assests/upload.svg" alt="">Upload</div>
-      <div class="item"><img src="./assests/user.svg" alt="">Personalize</div>
+      <div class="item BackgroundWin"><img src="./assests/background.svg" alt="">Background</div>
       <div class="item"><img src="./assests/settings.svg" alt="">Settings</div>
     </div>
 
@@ -172,63 +172,53 @@
 
   <div id="backstore" style="display: none">
     <div class="filemanager">
-          <ul class="indicator">
-            <li class="active" data-target="#desktop">
-              <img src="../assests/desktop.png" alt="" />Desktop
-            </li>
-            <li data-target="#download">
-              <img src="../assests/download.png" alt="" />Downloads
-            </li>
-            <li data-target="#music">
-              <img src="../assests/music.png" alt="" />Music
-            </li>
-            <li data-target="#picture">
-              <img src="../assests/picture.png" alt="" />Photos
-            </li>
-            <li data-target="#video">
-              <img src="../assests/video.png" alt="" />Video
-            </li>
-          </ul>
-          <ul class="content">
-            <li class="active" id="desktop">
-              <h1>desktop</h1>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
-                molestias quasi est expedita, a pariatur deleniti cum reiciendis
-                similique cupiditate?
-              </p>
-            </li>
-            <li id="download">
-              <h1>download</h1>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
-                molestias quasi est expedita, a pariatur deleniti cum reiciendis
-                similique cupiditate?
-              </p>
-            </li>
-            <li id="music">
-              <h1>music</h1>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
-                molestias quasi est expedita, a pariatur deleniti cum reiciendis
-                similique cupiditate?
-              </p>
-            </li>
-            <li id="picture">
-              <h1>picture</h1>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Reiciendis, sapiente.
-              </p>
-            </li>
-            <li id="video">
-              <h1>video</h1>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Reiciendis, sapiente.
-              </p>
-            </li>
-          </ul>
+      <ul class="indicator">
+        <li class="active" data-target="#desktop">
+          <img src="../assests/desktop.png" alt="" />Desktop
+        </li>
+        <li data-target="#download">
+          <img src="../assests/download.png" alt="" />Downloads
+        </li>
+        <li data-target="#music">
+          <img src="../assests/music.png" alt="" />Music
+        </li>
+        <li data-target="#picture">
+          <img src="../assests/picture.png" alt="" />Photos
+        </li>
+        <li data-target="#video">
+          <img src="../assests/video.png" alt="" />Video
+        </li>
+      </ul>
+      <ul class="content">
+        <li class="active" id="desktop">
+
+        </li>
+        <li id="download">
+          <div class="myFile">
+            <a href="#"><img class="fmConImage" src="./assests/pdf.png" alt=""></a>
+            <figcaption class="fmImgCap">Resume.pdf<figcaption>
+          </div>
+        </li>
+        <li id="music">
+          <div class="myFile">
+            <a href="#"><img class="fmConImage" src="./assests/love-song.png" alt=""></a>
+            <figcaption class="fmImgCap">music.mp3<figcaption>
+          </div>
+
+        </li>
+        <li id="picture">
+          <div class="myFile">
+            <a href="#"><img class="fmConImage" src="./assests/photo.png" alt=""></a>
+            <figcaption class="fmImgCap">photo.mp3<figcaption>
+          </div>
+        </li>
+        <li id="video">
+          <div class="myFile">
+            <a href="#"><img class="fmConImage" src="./assests/film-reel.png" alt=""></a>
+            <figcaption class="fmImgCap">movie.mp3<figcaption>
+          </div>
+        </li>
+      </ul>
     </div>
 
     <div id="appStoreMain" oncontextmenu="return false;">
@@ -295,6 +285,29 @@
 
       </div>
     </div>
+
+    <div id="bckwin">
+      <div class="bckimages" onclick="showFullPreview(this)">
+        <img src="https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg" alt="">
+      </div>
+      <div class="bckimages" onclick="showFullPreview(this)">
+        <img src="https://images.pexels.com/photos/1072179/pexels-photo-1072179.jpeg" alt="">
+      </div>
+      <div class="bckimages" onclick="showFullPreview(this)">
+        <img src="https://images.pexels.com/photos/544554/pexels-photo-544554.jpeg" alt="">
+      </div>
+      <div class="bckimages" onclick="showFullPreview(this)">
+        <img src="https://images.pexels.com/photos/1323550/pexels-photo-1323550.jpeg" alt="">
+      </div>
+      <div class="bckimages" onclick="showFullPreview(this)">
+        <img src="https://4kwallpapers.com/images/walls/thumbs_3t/6422.jpg" alt="">
+      </div>
+      <div class="bckimages" onclick="showFullPreview(this)">
+        <img src="https://4kwallpapers.com/images/walls/thumbs_3t/8309.jpg" alt="">
+      </div>
+
+    </div>
+
   </div>
 
   <script>
