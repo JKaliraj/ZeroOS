@@ -323,12 +323,15 @@ contextMenu.addEventListener("click", () => {
 });
 
 maximizeWindow.addEventListener("click", () => {
-  if (body.exitFullscreen) {
-		body.exitFullscreen();
-	} else {
-		body.requestFullscreen();
-	}
-  
+  if (document.fullscreenElement) {
+    document.querySelector(".context-menu #maximizeWindow img").src="../assests/maximize.svg";
+    document.querySelector(".context-menu #maximizeWindow p").innerText="Fullscreen";
+    document.exitFullscreen();
+  } else {
+    document.querySelector(".context-menu #maximizeWindow img").src="../assests/minimize-2.svg";
+    document.querySelector(".context-menu #maximizeWindow p").innerText="Exit Fullscreen";
+    document.documentElement.requestFullscreen();
+  }
 });
 
 // Context Menu End
