@@ -323,12 +323,12 @@ contextMenu.addEventListener("click", () => {
 });
 
 maximizeWindow.addEventListener("click", () => {
-  if (body.requestFullscreen) {
-    body.requestFullscreen();
-  }
-  document.querySelector(".restoreWindow").addEventListener("click", () => {
-      body.exitFullscreen();
-  })
+  if (body.exitFullscreen) {
+		body.exitFullscreen();
+	} else {
+		body.requestFullscreen();
+	}
+  
 });
 
 // Context Menu End

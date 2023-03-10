@@ -13,7 +13,7 @@
 
 <body oncontextmenu="return false;">
 
-  <div id="splash">
+  <div id="splash" onload="preloadImages()">
     <img src="./assests/favicon.png">
     <h2>ZeroOS</h2>
   </div>
@@ -385,9 +385,13 @@
         document.onmousemove = null;
       }
     }
-
-
 // Clock End
+  </script>
+  <script>
+    function preloadImages(){
+      var lockbg=new Image();
+      lockbg.src="../assests/loginbg.JPG";
+    }
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" async></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js" async></script>
