@@ -1367,5 +1367,9 @@ body {
     left: 20px;
     z-index: 1000;
     cursor: pointer;
+    transition: all 300ms ease;
+}
+.bkwinBackBtn:hover{
+    transform: scale(1.24);
 }
 /* Background End */

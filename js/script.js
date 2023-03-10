@@ -68,9 +68,14 @@ function login() {
         if (data != null) {
           var md5pass = md5(pass);
           if (md5pass == data["password"]) {
-            // load desktop icons start
             username = user;
             password = pass;
+            // Load Wallpaper
+            db.ref("users/" + user + "/settings/wallpaper/").once("value", (snap) => {
+              var data = snap.val();
+              $('.container').css('background-image', 'url(' + data['wallpaper'] + ')');
+            })
+            // load desktop icons start
             db.ref("users/" + user + "/desktop/").on("child_added", (snap) => {
               var data = snap.val();
               var htmlTemplate = `<div class="appsIcon ${data["id"]}" onclick="openApp('${data["code"]}')">
@@ -721,6 +726,9 @@ function closeFullPreview() {
 }
 function applyWallpaper(wallpaper){
   $('.container').css('background-image', 'url(' + wallpaper + ')');
+  db.ref("users/" + user + "/settings/wallpaper/").update({
+    wallpaper:wallpaper,
+  });
 }
 
 // Background End
