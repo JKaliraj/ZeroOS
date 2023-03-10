@@ -716,6 +716,9 @@ function showFullPreview(data) {
   data.classList.toggle("bckimages");
   data.classList.toggle("bckimagesActive");
 }
+function closeFullPreview() {
+  showFullPreview(document.querySelector(".bckimagesActive"));
+}
 function applyWallpaper(wallpaper){
   $('.container').css('background-image', 'url(' + wallpaper + ')');
 }
