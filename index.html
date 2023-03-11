@@ -45,7 +45,7 @@
   </div>
   <div class="container">
     <div class="sidebarWindowsMenu">
-      <div class="item currentUserInfo"><img src="./assests/user.png" alt=""> Administrator</div>
+      <div class="item currentUserInfo"><img src="./assests/user.png" alt=""> <span>Administrator</span></div>
       <hr>
       <div class="item"><img src="./assests/user.svg" alt="">Personalize</div>
       <div class="item"><img src="./assests/globe.svg" alt="">Language</div>
@@ -56,7 +56,9 @@
     <div class="context-menu">
       <div class="item"><img src="./assests/grid.svg" alt=""> View</div>
       <div class="item" id="refresh"><img src="./assests/rotate-cw.svg" alt="">Refresh</div>
-      <div class="item" id="maximizeWindow"><img src="./assests/maximize.svg" alt=""><p>Fullscreen</p></div>
+      <div class="item" id="maximizeWindow"><img src="./assests/maximize.svg" alt="">
+        <p>Fullscreen</p>
+      </div>
       <div class="item"><img src="./assests/upload.svg" alt="">Upload</div>
       <div class="item BackgroundWin"><img src="./assests/background.svg" alt="">Background</div>
       <div class="item"><img src="./assests/settings.svg" alt="">Settings</div>
@@ -253,7 +255,10 @@
               </div>
               <div class="appHeadRight">
                 <p class="appTitle"></p>
-                <button class="appInstallButton" onclick="">Install</button>
+                <div class="installOpen">
+                  <button class="appInstallButton" onclick="">Install</button>
+                  <button class="appOpenButton" onclick="">Open</button>
+                </div>
               </div>
             </div>
             <hr>
@@ -291,21 +296,25 @@
 
       <div class="bckimages" onclick="showFullPreview(this)">
         <img src="https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg" alt="">
-        <button onclick='applyWallpaper("https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg")'>Apply</button>
+        <button
+          onclick='applyWallpaper("https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg")'>Apply</button>
       </div>
       <div class="bckimages" onclick="showFullPreview(this)">
         <img src="https://images.pexels.com/photos/1072179/pexels-photo-1072179.jpeg" alt="">
-        <button onclick='applyWallpaper("https://images.pexels.com/photos/1072179/pexels-photo-1072179.jpeg")'>Apply</button>
+        <button
+          onclick='applyWallpaper("https://images.pexels.com/photos/1072179/pexels-photo-1072179.jpeg")'>Apply</button>
 
       </div>
       <div class="bckimages" onclick="showFullPreview(this)">
         <img src="https://images.pexels.com/photos/544554/pexels-photo-544554.jpeg" alt="">
-        <button onclick='applyWallpaper("https://images.pexels.com/photos/544554/pexels-photo-544554.jpeg")'>Apply</button>
+        <button
+          onclick='applyWallpaper("https://images.pexels.com/photos/544554/pexels-photo-544554.jpeg")'>Apply</button>
 
       </div>
       <div class="bckimages" onclick="showFullPreview(this)">
         <img src="https://images.pexels.com/photos/1323550/pexels-photo-1323550.jpeg" alt="">
-        <button onclick='applyWallpaper("https://images.pexels.com/photos/1323550/pexels-photo-1323550.jpeg")'>Apply</button>
+        <button
+          onclick='applyWallpaper("https://images.pexels.com/photos/1323550/pexels-photo-1323550.jpeg")'>Apply</button>
 
       </div>
       <div class="bckimages" onclick="showFullPreview(this)">
@@ -388,9 +397,9 @@
 // Clock End
   </script>
   <script>
-    function preloadImages(){
-      var lockbg=new Image();
-      lockbg.src="../assests/loginbg.JPG";
+    function preloadImages() {
+      var lockbg = new Image();
+      lockbg.src = "../assests/loginbg.JPG";
     }
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" async></script>

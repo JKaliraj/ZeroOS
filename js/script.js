@@ -18,6 +18,7 @@ const body = document.querySelector("body"),
   appStoreGames = document.querySelector(".appStoreGames"),
   appInstallToMain = document.querySelector(".appInstallToMain"),
   aboutContextMenu = document.querySelector(".aboutContextMenu"),
+  logoutMenu = document.querySelector(".sidebarWindowsMenu .logoutMenu"),
   filemanager = document.querySelector(".filemanager"),
   backgroundChanger = document.querySelector(".BackgroundWin"),
   backgroundContent = document.querySelector("#bckwin");
@@ -36,11 +37,11 @@ const loginMain = document.querySelector(".loginMain"),
   signupButton = signupDiv.querySelector(".signupButton");
 
 // Development Begin
-container.style.display = "flex";
-document.querySelector(".loginMain").style.opacity = "0";
-document.querySelector("#splash").style.display = "none";
-document.querySelector(".loginMain").style.display = "none";
-document.querySelector(".container").style.display = "flex";
+// container.style.display = "flex";
+// document.querySelector(".loginMain").style.opacity = "0";
+// document.querySelector("#splash").style.display = "none";
+// document.querySelector(".loginMain").style.display = "none";
+// document.querySelector(".container").style.display = "flex";
 // End (Remove this in production)
 
 // Login Start
@@ -49,13 +50,14 @@ var password = localStorage.getItem("password");
 if (username) {
   usernameInput.value = username;
 }
-// wait(2000).then(() => {
-//   document.querySelector("#splash").style.display = "none";
-//   document.querySelector(".loginMain").style.opacity = "1";
-//   document.querySelector(".loginMain").style.display = "flex";
-//   document.querySelector("#signinUser").focus();
-// });
+wait(2000).then(() => {
+  document.querySelector("#splash").style.display = "none";
+  document.querySelector(".loginMain").style.opacity = "1";
+  document.querySelector(".loginMain").style.display = "flex";
+  document.querySelector("#signinUser").focus();
+});
 
+var isFirstLogin = true;
 function login() {
   var pass = passwordInput.value;
   var user = usernameInput.value;
@@ -70,28 +72,33 @@ function login() {
           if (md5pass == data["password"]) {
             username = user;
             password = pass;
+            // Set User Details
+            document.querySelector(".currentUserInfo span").innerText = username;
             // Load Wallpaper
             db.ref("users/" + user + "/settings/wallpaper/").once("value", (snap) => {
               var data = snap.val();
               $('.container').css('background-image', 'url(' + data['wallpaper'] + ')');
             })
-            // load desktop icons start
-            db.ref("users/" + user + "/desktop/").on("child_added", (snap) => {
-              var data = snap.val();
-              var htmlTemplate = `<div class="appsIcon ${data["id"]}" onclick="openApp('${data["code"]}')">
-              <img src="${data["image"]}" alt="">
-              <p>${data["name"]}</p>
-              </div> `;
-              main.innerHTML += htmlTemplate;
-            });
-            db.ref("users/" + user + "/desktop/").on(
-              "child_removed",
-              (snap) => {
+            if (isFirstLogin) {
+              isFirstLogin = false;
+              // load desktop icons start
+              db.ref("users/" + user + "/desktop/").on("child_added", (snap) => {
                 var data = snap.val();
-                document.querySelector(`.${data["id"]}`).remove();
-              }
-            );
-            // load desktop icons end
+                var htmlTemplate = `<div class="appsIcon ${data["id"]}" onclick="openApp('${data["code"]}')">
+                <img src="${data["image"]}" alt="">
+                <p>${data["name"]}</p>
+                </div> `;
+                main.innerHTML += htmlTemplate;
+              });
+              db.ref("users/" + user + "/desktop/").on(
+                "child_removed",
+                (snap) => {
+                  var data = snap.val();
+                  document.querySelector(`.${data["id"]}`).remove();
+                }
+              );
+              // load desktop icons end
+            }
             localStorage.setItem("username", user);
             localStorage.setItem("password", md5pass);
             container.style.display = "flex";
@@ -236,8 +243,11 @@ function showExistingAccount() {
 }
 
 // Login End
-
+var isAppStoreOpen = false;
 function openApp(appcode) {
+  if (isAppStoreOpen) {
+    document.querySelector(".storeTheme .wb-control .wb-min").click();
+  }
   db.ref("users/" + username + "/desktop/" + appcode + "/").once(
     "value",
     (snap) => {
@@ -316,7 +326,13 @@ main.addEventListener("click", (e) => {
   }
 });
 refreshDesktop.addEventListener("click", () => {
-  window.location.reload();
+  // window.location.reload();
+  login();
+});
+logoutMenu.addEventListener("click", () => {
+  if (confirm("Are you sure?")) {
+    window.location.reload();
+  }
 });
 contextMenu.addEventListener("click", () => {
   contextMenu.classList.remove("visible");
@@ -324,12 +340,12 @@ contextMenu.addEventListener("click", () => {
 
 maximizeWindow.addEventListener("click", () => {
   if (document.fullscreenElement) {
-    document.querySelector(".context-menu #maximizeWindow img").src="../assests/maximize.svg";
-    document.querySelector(".context-menu #maximizeWindow p").innerText="Fullscreen";
+    document.querySelector(".context-menu #maximizeWindow img").src = "../assests/maximize.svg";
+    document.querySelector(".context-menu #maximizeWindow p").innerText = "Fullscreen";
     document.exitFullscreen();
   } else {
-    document.querySelector(".context-menu #maximizeWindow img").src="../assests/minimize-2.svg";
-    document.querySelector(".context-menu #maximizeWindow p").innerText="Exit Fullscreen";
+    document.querySelector(".context-menu #maximizeWindow img").src = "../assests/minimize-2.svg";
+    document.querySelector(".context-menu #maximizeWindow p").innerText = "Exit Fullscreen";
     document.documentElement.requestFullscreen();
   }
 });
@@ -590,6 +606,15 @@ function openStore() {
     height: "95%",
     class: "storeTheme",
     mount: document.getElementById("appStoreMain"),
+    oncreate: function (options) {
+      isAppStoreOpen = true;
+    },
+    onclose: function (force) {
+      isAppStoreOpen = false;
+    },
+    onminimize: function () {
+      isAppStoreOpen = true;
+    },
   });
 }
 
@@ -602,11 +627,14 @@ function showAppToInstall(appid) {
     document.querySelector(".appInstallWindow .appAbout").innerText = "";
     document.querySelector(".appInstallWindow .appHeadLeft img").src = "";
     document.querySelector(".appInstallButton").removeAttribute("onclick");
+    document.querySelector(".appOpenButton").removeAttribute("onclick");
   });
 
   db.ref("users/" + username + "/desktop/").once("value", (snap) => {
     if (snap.hasChild(appid)) {
       document.querySelector(".appInstallButton").innerText = "Uninstall";
+      document.querySelector(".appOpenButton").style.display = "block";
+      document.querySelector(".appOpenButton").setAttribute("onclick", `openApp('${appid}')`);
       document.querySelector(".appInstallButton").style.background =
         "#d11111da";
       document.querySelector(".appInstallButton").removeAttribute("onclick");
@@ -629,6 +657,8 @@ function showAppToInstall(appid) {
       });
     } else {
       document.querySelector(".appInstallButton").innerText = "Install";
+      document.querySelector(".appOpenButton").style.display = "none";
+      document.querySelector(".appOpenButton").removeAttribute("onclick");
       document.querySelector(".appInstallButton").style.background =
         "#03d827e7";
 
@@ -661,6 +691,8 @@ function installApp(appid, appname, appimage, appurl, uniquecode) {
     url: appurl,
   });
   document.querySelector(".appInstallButton").innerText = "Uninstall";
+  document.querySelector(".appOpenButton").style.display = "block";
+  document.querySelector(".appOpenButton").setAttribute("onclick", `openApp('${appid}')`);
   document.querySelector(".appInstallButton").style.background = "#d11111da";
   document.querySelector(".appInstallButton").removeAttribute("onclick");
   document
@@ -673,14 +705,11 @@ function installApp(appid, appname, appimage, appurl, uniquecode) {
 function uninstallApp(appid, appname, appimage, appurl, uniquecode) {
   db.ref("users/" + username + "/desktop/" + appid + "/").remove();
   document.querySelector(".appInstallButton").innerText = "Install";
+  document.querySelector(".appOpenButton").style.display = "none";
+  document.querySelector(".appOpenButton").removeAttribute("onclick");
   document.querySelector(".appInstallButton").style.background = "#03d827e7";
   document.querySelector(".appInstallButton").removeAttribute("onclick");
-  document
-    .querySelector(".appInstallWindow .appInstallButton")
-    .setAttribute(
-      "onclick",
-      `installApp('${appid}','${appname}','${appimage}','${appurl}','${uniquecode}')`
-    );
+  document.querySelector(".appInstallWindow .appInstallButton").setAttribute("onclick", `installApp('${appid}','${appname}','${appimage}','${appurl}','${uniquecode}')`);
 }
 // zeroStore End
 // About Start
@@ -727,10 +756,10 @@ function showFullPreview(data) {
 function closeFullPreview() {
   showFullPreview(document.querySelector(".bckimagesActive"));
 }
-function applyWallpaper(wallpaper){
+function applyWallpaper(wallpaper) {
   $('.container').css('background-image', 'url(' + wallpaper + ')');
-  db.ref("users/" + user + "/settings/wallpaper/").update({
-    wallpaper:wallpaper,
+  db.ref("users/" + username + "/settings/wallpaper/").update({
+    wallpaper: wallpaper,
   });
 }
 
