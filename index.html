@@ -23,8 +23,8 @@
       <img src="./assests/user.png" alt="">
       <div class="signinRow">
         <div class="inputField">
-          <input type="text" id="signinUser" placeholder="Username" maxlength="12" autocomplete="off">
-          <input type="password" id="signinPass" placeholder="Password" onkeyup="signinPassKeyPressed()">
+          <input type="text" id="signinUser" placeholder="Username" maxlength="12" autocomplete="off" onkeydown="signinUserEnter(event)">
+          <input type="password" id="signinPass" placeholder="Password" onkeyup="signinPassKeyPressed(event)">
         </div>
         <button class="signinButton" onclick="showPasswordInput()"><img src="./assests/arrow-left.svg" alt=""></button>
       </div>
@@ -37,7 +37,6 @@
       <input type="password" id="signupCPass" placeholder="Confirm Password">
       <button class="signupButton" onclick="createNewUser()">Create</button>
       <p onclick="showExistingAccount()">Already an Zerosoft User</p>
-
     </div>
   </div>
   <div class="alert danger-alert">

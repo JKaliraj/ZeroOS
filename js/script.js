@@ -63,6 +63,7 @@ function login() {
   var user = usernameInput.value;
   if (pass.length != 0) {
     signinButton.classList.toggle("loading");
+    signinButton.removeAttribute("onclick");
     db.ref("users/")
       .child(user)
       .once("value", (snap) => {
@@ -73,23 +74,33 @@ function login() {
             username = user;
             password = pass;
             // Set User Details
-            document.querySelector(".currentUserInfo span").innerText = username;
+            document.querySelector(".currentUserInfo span").innerText =
+              username;
             // Load Wallpaper
-            db.ref("users/" + user + "/settings/wallpaper/").once("value", (snap) => {
-              var data = snap.val();
-              $('.container').css('background-image', 'url(' + data['wallpaper'] + ')');
-            })
+            db.ref("users/" + user + "/settings/wallpaper/").once(
+              "value",
+              (snap) => {
+                var data = snap.val();
+                $(".container").css(
+                  "background-image",
+                  "url(" + data["wallpaper"] + ")"
+                );
+              }
+            );
             if (isFirstLogin) {
               isFirstLogin = false;
               // load desktop icons start
-              db.ref("users/" + user + "/desktop/").on("child_added", (snap) => {
-                var data = snap.val();
-                var htmlTemplate = `<div class="appsIcon ${data["id"]}" onclick="openApp('${data["code"]}')">
+              db.ref("users/" + user + "/desktop/").on(
+                "child_added",
+                (snap) => {
+                  var data = snap.val();
+                  var htmlTemplate = `<div class="appsIcon ${data["id"]}" onclick="openApp('${data["code"]}')">
                 <img src="${data["image"]}" alt="">
                 <p>${data["name"]}</p>
                 </div> `;
-                main.innerHTML += htmlTemplate;
-              });
+                  main.innerHTML += htmlTemplate;
+                }
+              );
               db.ref("users/" + user + "/desktop/").on(
                 "child_removed",
                 (snap) => {
@@ -109,6 +120,7 @@ function login() {
             passwordInput.focus();
             showPasswordInput();
             signinButton.classList.toggle("loading");
+            signinButton.setAttribute("onclick","showUserInput()");
             document.querySelector("#alert-text").textContent =
               "Wrong Password";
             document.querySelector(".alert").classList.toggle("alertnow");
@@ -118,14 +130,14 @@ function login() {
           }
         } else {
           signinButton.classList.remove("loading");
+          signinButton.setAttribute("onclick","showPasswordInput()");
           document.querySelector("#alert-text").textContent =
             "Invalid User Credentials";
           document.querySelector(".alert").classList.toggle("alertnow");
           wait(3000).then(() => {
             document.querySelector(".alert").classList.toggle("alertnow");
           });
-
-          showuserInput();
+          showUserInput();
         }
       });
   }
@@ -135,31 +147,44 @@ function showPasswordInput() {
   if (usernameInput.value.length >= 3) {
     signinButton.classList.add("activeSignin");
     passwordInput.focus();
-    signinButton.setAttribute("onclick", "showuserInput()");
+    signinButton.setAttribute("onclick", "showUserInput()");
     usernameInput.style = "position:absolute;z-index:-999;opacity:0";
     passwordInput.style = "position:relative;z-index:999;opacity:1";
+    signinDiv.querySelector("p").style = "opacity:0;cursor:default;";
+    signinDiv.querySelector("p").removeAttribute("onclick");
   }
 }
-function showuserInput() {
+function showUserInput() {
   signinButton.classList.remove("activeSignin");
   signinButton.setAttribute("onclick", "showPasswordInput()");
   passwordInput.style = "position:relative;z-index:-999;opacity:0";
   usernameInput.style = "position:absolute;z-index:999;opacity:1";
   usernameInput.focus();
+  signinDiv.querySelector("p").style = "opacity:1;cursor:pointer;";
+  signinDiv.querySelector("p").setAttribute("onclick","showSetupNewAccount()");
+
 }
-function signinPassKeyPressed() {
+function signinPassKeyPressed(event) {
   var usernameInputLen = signinRow.querySelector("#signinUser");
   var passwordInputLen = signinRow.querySelector("#signinPass");
-
   if (passwordInputLen.value.length == 0) {
     signinButton.classList.add("activeSignin");
-    signinButton.setAttribute("onclick", "showuserInput()");
+    signinButton.setAttribute("onclick", "showUserInput()");
     usernameInput.style = "position:absolute;z-index:-999;opacity:0";
     passwordInput.style = "position:relative;z-index:999;opacity:1";
   }
   if (passwordInputLen.value.length > 0) {
     signinButton.classList.remove("activeSignin");
     signinButton.setAttribute("onclick", "login()");
+  }
+  if(event.keyCode==13){
+    login();
+  }
+}
+
+function signinUserEnter(e){
+  if(e.keyCode==13){
+    showPasswordInput();
   }
 }
 
@@ -236,18 +261,14 @@ function showSetupNewAccount() {
   signupButton.classList.remove("loading");
 }
 function showExistingAccount() {
-  showuserInput();
+  showUserInput();
   signinDiv.style.display = "flex";
   signupDiv.style.display = "none";
   signinUser.focus();
 }
 
 // Login End
-var isAppStoreOpen = false;
 function openApp(appcode) {
-  if (isAppStoreOpen) {
-    document.querySelector(".storeTheme .wb-control .wb-min").click();
-  }
   db.ref("users/" + username + "/desktop/" + appcode + "/").once(
     "value",
     (snap) => {
@@ -340,12 +361,16 @@ contextMenu.addEventListener("click", () => {
 
 maximizeWindow.addEventListener("click", () => {
   if (document.fullscreenElement) {
-    document.querySelector(".context-menu #maximizeWindow img").src = "../assests/maximize.svg";
-    document.querySelector(".context-menu #maximizeWindow p").innerText = "Fullscreen";
+    document.querySelector(".context-menu #maximizeWindow img").src =
+      "../assests/maximize.svg";
+    document.querySelector(".context-menu #maximizeWindow p").innerText =
+      "Fullscreen";
     document.exitFullscreen();
   } else {
-    document.querySelector(".context-menu #maximizeWindow img").src = "../assests/minimize-2.svg";
-    document.querySelector(".context-menu #maximizeWindow p").innerText = "Exit Fullscreen";
+    document.querySelector(".context-menu #maximizeWindow img").src =
+      "../assests/minimize-2.svg";
+    document.querySelector(".context-menu #maximizeWindow p").innerText =
+      "Exit Fullscreen";
     document.documentElement.requestFullscreen();
   }
 });
@@ -538,7 +563,6 @@ sidebarFile.addEventListener("click", () => {
       this.classList.add("active");
     });
   });
-
 });
 
 // File End
@@ -606,19 +630,10 @@ function openStore() {
     height: "95%",
     class: "storeTheme",
     mount: document.getElementById("appStoreMain"),
-    oncreate: function (options) {
-      isAppStoreOpen = true;
-    },
-    onclose: function (force) {
-      isAppStoreOpen = false;
-    },
-    onminimize: function () {
-      isAppStoreOpen = true;
-    },
   });
 }
 
-appStoreGames.addEventListener("click", () => { });
+appStoreGames.addEventListener("click", () => {});
 
 function showAppToInstall(appid) {
   appInstallToMain.addEventListener("click", () => {
@@ -634,7 +649,9 @@ function showAppToInstall(appid) {
     if (snap.hasChild(appid)) {
       document.querySelector(".appInstallButton").innerText = "Uninstall";
       document.querySelector(".appOpenButton").style.display = "block";
-      document.querySelector(".appOpenButton").setAttribute("onclick", `openApp('${appid}')`);
+      document
+        .querySelector(".appOpenButton")
+        .setAttribute("onclick", `openAppFromStore('${appid}')`);
       document.querySelector(".appInstallButton").style.background =
         "#d11111da";
       document.querySelector(".appInstallButton").removeAttribute("onclick");
@@ -682,6 +699,11 @@ function showAppToInstall(appid) {
   });
 }
 
+function openAppFromStore(appid) {
+  document.querySelector(".storeTheme .wb-control .wb-min").click();
+  openApp(appid);
+}
+
 function installApp(appid, appname, appimage, appurl, uniquecode) {
   db.ref("users/" + username + "/desktop/" + appid + "/").set({
     code: appid,
@@ -692,7 +714,9 @@ function installApp(appid, appname, appimage, appurl, uniquecode) {
   });
   document.querySelector(".appInstallButton").innerText = "Uninstall";
   document.querySelector(".appOpenButton").style.display = "block";
-  document.querySelector(".appOpenButton").setAttribute("onclick", `openApp('${appid}')`);
+  document
+    .querySelector(".appOpenButton")
+    .setAttribute("onclick", `openAppFromStore('${appid}')`);
   document.querySelector(".appInstallButton").style.background = "#d11111da";
   document.querySelector(".appInstallButton").removeAttribute("onclick");
   document
@@ -709,7 +733,12 @@ function uninstallApp(appid, appname, appimage, appurl, uniquecode) {
   document.querySelector(".appOpenButton").removeAttribute("onclick");
   document.querySelector(".appInstallButton").style.background = "#03d827e7";
   document.querySelector(".appInstallButton").removeAttribute("onclick");
-  document.querySelector(".appInstallWindow .appInstallButton").setAttribute("onclick", `installApp('${appid}','${appname}','${appimage}','${appurl}','${uniquecode}')`);
+  document
+    .querySelector(".appInstallWindow .appInstallButton")
+    .setAttribute(
+      "onclick",
+      `installApp('${appid}','${appname}','${appimage}','${appurl}','${uniquecode}')`
+    );
 }
 // zeroStore End
 // About Start
@@ -745,7 +774,7 @@ backgroundChanger.addEventListener("click", () => {
     width: "60%",
     height: "75%",
     mount: backgroundContent,
-    modal: true
+    modal: true,
   });
 });
 
@@ -757,7 +786,7 @@ function closeFullPreview() {
   showFullPreview(document.querySelector(".bckimagesActive"));
 }
 function applyWallpaper(wallpaper) {
-  $('.container').css('background-image', 'url(' + wallpaper + ')');
+  $(".container").css("background-image", "url(" + wallpaper + ")");
   db.ref("users/" + username + "/settings/wallpaper/").update({
     wallpaper: wallpaper,
   });

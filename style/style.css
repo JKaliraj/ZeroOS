@@ -112,7 +112,6 @@ body {
     flex-direction: column;
     gap: 50px;
     backdrop-filter: blur(1px);
-
 }
 
 .loginMain .signin img {
@@ -120,7 +119,10 @@ body {
     height: 120px;
     object-fit: cover;
 }
+.loginMain .signin p{
+    transition: all 200ms ease;
 
+}
 .loginMain .signin .signinRow {
     display: flex;
     align-items: center;
