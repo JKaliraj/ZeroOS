@@ -785,6 +785,43 @@ body {
     background-color: rgba(223, 47, 47, 0.548);
 }
 
+/* App Menu */
+.appMenu {
+    position: fixed;
+    z-index: 10000;
+    width: 180px;
+    background: #1b1a1a;
+    border-radius: 5px;
+    transform: scale(0);
+    transform-origin: top left;
+}
+
+.appMenu.visible {
+    transform: scale(1);
+    transition: transform 200ms ease-in-out;
+}
+
+.appMenu .item {
+    padding: 8px 10px;
+    font-size: 15px;
+    color: #eee;
+    cursor: pointer;
+    border-radius: inherit;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.appMenu .item img {
+    width: 15px;
+    height: 15px;
+}
+
+.appMenu .item:hover {
+    background: #343434;
+}
+
+
 /* Context Menu End */
 
 .appsIcon {

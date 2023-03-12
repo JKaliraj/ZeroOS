@@ -21,7 +21,8 @@ const body = document.querySelector("body"),
   logoutMenu = document.querySelector(".sidebarWindowsMenu .logoutMenu"),
   filemanager = document.querySelector(".filemanager"),
   backgroundChanger = document.querySelector(".BackgroundWin"),
-  backgroundContent = document.querySelector("#bckwin");
+  backgroundContent = document.querySelector("#bckwin"),
+  appMenu = document.querySelector(".appMenu");
 
 const loginMain = document.querySelector(".loginMain"),
   signinDiv = document.querySelector(".signin"),
@@ -94,9 +95,9 @@ function login() {
                 "child_added",
                 (snap) => {
                   var data = snap.val();
-                  var htmlTemplate = `<div class="appsIcon ${data["id"]}" onclick="openApp('${data["code"]}')">
-                <img src="${data["image"]}" alt="">
-                <p>${data["name"]}</p>
+                  var htmlTemplate = `<div class="appsIcon ${data["id"]} myAppContextMenu" onclick="openApp('${data["code"]}')" id="thisIsApp" data-code="${data["code"]}" data-id="${data['id']}" data-image="${data['image']}" data-name="${data['name']}" data-url="${data['url']}">
+                <img src="${data["image"]}" alt="" id="thisIsApp">
+                <p id="thisIsApp">${data["name"]}</p>
                 </div> `;
                   main.innerHTML += htmlTemplate;
                 }
@@ -108,6 +109,10 @@ function login() {
                   document.querySelector(`.${data["id"]}`).remove();
                 }
               );
+
+              // Refresh App ContextMenu
+              refreshAppContextMenu();
+
               // load desktop icons end
             }
             localStorage.setItem("username", user);
@@ -120,7 +125,7 @@ function login() {
             passwordInput.focus();
             showPasswordInput();
             signinButton.classList.toggle("loading");
-            signinButton.setAttribute("onclick","showUserInput()");
+            signinButton.setAttribute("onclick", "showUserInput()");
             document.querySelector("#alert-text").textContent =
               "Wrong Password";
             document.querySelector(".alert").classList.toggle("alertnow");
@@ -130,7 +135,7 @@ function login() {
           }
         } else {
           signinButton.classList.remove("loading");
-          signinButton.setAttribute("onclick","showPasswordInput()");
+          signinButton.setAttribute("onclick", "showPasswordInput()");
           document.querySelector("#alert-text").textContent =
             "Invalid User Credentials";
           document.querySelector(".alert").classList.toggle("alertnow");
@@ -161,8 +166,7 @@ function showUserInput() {
   usernameInput.style = "position:absolute;z-index:999;opacity:1";
   usernameInput.focus();
   signinDiv.querySelector("p").style = "opacity:1;cursor:pointer;";
-  signinDiv.querySelector("p").setAttribute("onclick","showSetupNewAccount()");
-
+  signinDiv.querySelector("p").setAttribute("onclick", "showSetupNewAccount()");
 }
 function signinPassKeyPressed(event) {
   var usernameInputLen = signinRow.querySelector("#signinUser");
@@ -177,13 +181,13 @@ function signinPassKeyPressed(event) {
     signinButton.classList.remove("activeSignin");
     signinButton.setAttribute("onclick", "login()");
   }
-  if(event.keyCode==13){
+  if (event.keyCode == 13) {
     login();
   }
 }
 
-function signinUserEnter(e){
-  if(e.keyCode==13){
+function signinUserEnter(e) {
+  if (e.keyCode == 13) {
     showPasswordInput();
   }
 }
@@ -288,6 +292,11 @@ function openApp(appcode) {
 }
 
 // Context Menu Start
+window.addEventListener("click", function () {
+  contextMenu.classList.remove("visible");
+  sidebarWindowsMenu.classList.remove("visible");
+  appMenu.classList.remove("visible");
+});
 const normalizePozition = (mouseX, mouseY) => {
   // ? compute what is the mouse position relative to the container element (scope)
   let { left: scopeOffsetX, top: scopeOffsetY } = main.getBoundingClientRect();
@@ -321,19 +330,17 @@ const normalizePozition = (mouseX, mouseY) => {
 
 main.addEventListener("contextmenu", (event) => {
   event.preventDefault();
-
   const { clientX: mouseX, clientY: mouseY } = event;
-
   const { normalizedX, normalizedY } = normalizePozition(mouseX, mouseY);
-
-  contextMenu.classList.remove("visible");
-
+  // contextMenu.classList.remove("visible");
   contextMenu.style.top = `${normalizedY}px`;
   contextMenu.style.left = `${normalizedX}px`;
-
-  setTimeout(() => {
+  if (event.target.id === "thisIsApp") {
+    contextMenu.classList.remove("visible");
+  } else {
+    appMenu.classList.remove("visible");
     contextMenu.classList.add("visible");
-  });
+  }
 });
 
 main.addEventListener("click", (e) => {
@@ -355,9 +362,6 @@ logoutMenu.addEventListener("click", () => {
     window.location.reload();
   }
 });
-contextMenu.addEventListener("click", () => {
-  contextMenu.classList.remove("visible");
-});
 
 maximizeWindow.addEventListener("click", () => {
   if (document.fullscreenElement) {
@@ -374,6 +378,26 @@ maximizeWindow.addEventListener("click", () => {
     document.documentElement.requestFullscreen();
   }
 });
+
+function refreshAppContextMenu(){
+  // appMenu
+  const appsIconItem = document.querySelectorAll(".myAppContextMenu");
+  appsIconItem.forEach((item) => {
+    item.addEventListener("contextmenu", function (event) {
+      var dataId = item.getAttribute("data-id");
+      var dataCode = item.getAttribute("data-code");
+      var dataName = item.getAttribute("data-name");
+      var dataImage = item.getAttribute("data-image");
+      var dataUrl = item.getAttribute("data-url");
+      document.querySelector(".uninstallThisApp").setAttribute("onclick",`uninstallApp('${dataCode}','${dataName}','${dataImage}','${dataUrl}'),'${dataId}'`);
+      event.preventDefault();
+      var appMenu = document.querySelector(".appMenu");
+      appMenu.style.top = event.pageY + "px";
+      appMenu.style.left = event.pageX + "px";
+      appMenu.classList.add("visible");
+    });
+  });
+}
 
 // Context Menu End
 
@@ -725,20 +749,21 @@ function installApp(appid, appname, appimage, appurl, uniquecode) {
       "onclick",
       `uninstallApp('${appid}','${appname}','${appimage}','${appurl}','${uniquecode}')`
     );
+    refreshAppContextMenu();
 }
 function uninstallApp(appid, appname, appimage, appurl, uniquecode) {
-  db.ref("users/" + username + "/desktop/" + appid + "/").remove();
-  document.querySelector(".appInstallButton").innerText = "Install";
-  document.querySelector(".appOpenButton").style.display = "none";
-  document.querySelector(".appOpenButton").removeAttribute("onclick");
-  document.querySelector(".appInstallButton").style.background = "#03d827e7";
-  document.querySelector(".appInstallButton").removeAttribute("onclick");
-  document
-    .querySelector(".appInstallWindow .appInstallButton")
-    .setAttribute(
-      "onclick",
-      `installApp('${appid}','${appname}','${appimage}','${appurl}','${uniquecode}')`
-    );
+  if(confirm("Do you want to Unistall "+appname+"?")){
+    db.ref("users/" + username + "/desktop/" + appid + "/").remove();
+    document.querySelector(".appInstallButton").innerText = "Install";
+    document.querySelector(".appOpenButton").style.display = "none";
+    document.querySelector(".appOpenButton").removeAttribute("onclick");
+    document.querySelector(".appInstallButton").style.background = "#03d827e7";
+    document.querySelector(".appInstallButton").removeAttribute("onclick");
+    document.querySelector(".appInstallWindow .appInstallButton").setAttribute(
+        "onclick",
+        `installApp('${appid}','${appname}','${appimage}','${appurl}','${uniquecode}')`
+      );
+  }
 }
 // zeroStore End
 // About Start
